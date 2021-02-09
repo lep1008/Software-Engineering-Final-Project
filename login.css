@@ -1,0 +1,85 @@
+body {
+    background-color:lightblue;
+    background-image: url(images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size:100%;
+}
+span {
+    background-color: red;
+}
+h1 {
+    text-align: center;
+    color:blue;
+}
+div {
+    text-align: left;
+    margin-top:15px;
+    background-position-x: center;
+    margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 45%;;
+
+}
+.form {
+    background-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+
+    border-style: solid;
+    border-color: lightblue;
+    border-width: thick;
+
+}
+input {
+    display: block;
+margin-left: auto;
+margin-right:auto;;
+
+    width: 60%;
+    height: 30px;;
+    font-size: x-large;
+}
+
+label {
+display: block;
+
+font-size:x-large;
+padding-top:15px;
+
+
+margin-left: 20%;
+
+
+  
+}
+
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+a {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+    margin-top:15px;
+    
+
+}
+
+button  {
+display: block;
+  background-color:lightblue;
+  margin-top:15px;
+  width:50%;
+  height: 50px;
+  font-size: x-large;
+  margin-left: 15px;;
+  margin-left: auto;
+  margin-right: auto;
+}
