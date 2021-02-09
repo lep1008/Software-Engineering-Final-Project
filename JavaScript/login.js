@@ -1,4 +1,4 @@
 
 function login() {
-    location.href="home.html"
+    location.href="feed.html"
 }
