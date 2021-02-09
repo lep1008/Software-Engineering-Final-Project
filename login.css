@@ -10,6 +10,7 @@ span {
 h1 {
     text-align: center;
     color:blue;
+
 }
 div {
     text-align: left;
@@ -27,7 +28,7 @@ div {
     margin-left: auto;
     margin-right: auto;
     width: 30%;
-
+    width:30%;
     border-style: solid;
     border-color: lightblue;
     border-width: thick;
