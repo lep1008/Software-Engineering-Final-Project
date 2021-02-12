@@ -1,6 +1,6 @@
 body {
     background-color:lightblue;
-    background-image: url(images/bg.jpg);
+ 
     background-repeat: no-repeat;
     background-size:100%;
 }
@@ -19,7 +19,7 @@ div {
     margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  height: 60%;;
+  height: 55%;;
 
 }
 .form {
@@ -27,7 +27,7 @@ div {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 25%;
+    width: 20%;
   
     border-style: solid;
     border-color: lightblue;
@@ -39,7 +39,7 @@ input {
 margin-left: auto;
 margin-right:auto;;
 
-    width: 60%;
+    width: 80%;
     height: 30px;;
     font-size: x-large;
 }
@@ -51,7 +51,7 @@ font-size:x-large;
 padding-top:15px;
 
 
-margin-left: 20%;
+margin-left: 10%;
 
 
   
@@ -76,7 +76,7 @@ a {
 
 button  {
 display: block;
-  background-color:lightblue;
+  background-color:#add8e6;
   margin-top:15px;
   width:50%;
   height: 50px;
