@@ -1,5 +1,5 @@
 body {
-    background-color:lightblue;
+    background-color:#fafafa;
  
     background-repeat: no-repeat;
     background-size:100%;
@@ -9,7 +9,7 @@ span {
 }
 h1 {
     text-align: center;
-    color:blue;
+    background-color:#1d8ee4;
 
 }
 div {
@@ -23,15 +23,15 @@ div {
 
 }
 .form {
-    background-color: white;
+    background-color: white !important;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 20%;
   
     border-style: solid;
-    border-color: lightblue;
-    border-width: thick;
+    border-color:#e1e2e3;
+    border-width: thin;
 
 }
 input {
@@ -41,7 +41,8 @@ margin-right:auto;;
 
     width: 80%;
     height: 30px;;
-    font-size: x-large;
+    font-size: medium;
+    
 }
 
 label {
@@ -64,6 +65,7 @@ img {
     margin-right: auto;
     margin-top:50px;
     width: 50%;
+    border-color: white  !important;
 }
 a {
     display: block;
@@ -76,7 +78,9 @@ a {
 
 button  {
 display: block;
-  background-color:#add8e6;
+background-color:  #1d8ee4;
+border:none;
+border-radius: 12px;;
   margin-top:15px;
   width:50%;
   height: 50px;
@@ -84,4 +88,6 @@ display: block;
   margin-left: 15px;;
   margin-left: auto;
   margin-right: auto;
+  text-emphasis-color: white;
+  cursor: pointer;
 }
