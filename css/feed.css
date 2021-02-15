@@ -17,7 +17,7 @@ div {
     margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  height: 65%;;
+  height: 82.5%;;
 
 }
 .form {
@@ -25,7 +25,7 @@ div {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 32.5%;
+    width: 90%;
   
     border-style: solid;
     border-color:#e1e2e3;
@@ -49,12 +49,9 @@ margin-top:15px;
 
 img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:50px;
-    margin-bottom: 30px;;
-    width: 50%;
-    border-color: white  !important;
+    float:left;
+    margin-left:5%;
+   
 }
 a {
     display: block;
@@ -95,3 +92,5 @@ color:black;
 a:hover {
     color:black;
 }
+
+
