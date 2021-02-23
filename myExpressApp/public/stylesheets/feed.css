@@ -51,6 +51,9 @@ img {
     display: block;
     float:left;
     margin-left:5%;
+    
+    height:90px;
+    width: 5%;;
    
 }
 a {
