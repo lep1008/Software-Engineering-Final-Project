@@ -9,6 +9,10 @@ var con = mysql.createConnection({
 });
 
 router.post('/submitform',function(req,res,next) {
+
+
+
+
 console.log(req.body.name);
 console.log(req.body.user);
 console.log(req.body.pass);
@@ -23,6 +27,8 @@ con.connect(function(err) {
     console.log("1 record inserted");
   });
 });
+
+res.redirect('/feed');
 
 
 });
