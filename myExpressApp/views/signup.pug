@@ -5,11 +5,14 @@ head
   title Log in
   link(rel='stylesheet' href='stylesheets/login.css')
   script(type='text/javascript' src='javascripts/links.js')
+  script(type='text/javascript' src='javascripts/signUp.js')
+  script(type='module' src='script.js')
+ 
 .form
   img(src='/images/logo.png')
-  input#first(type='text' placeholder='Full Name')
-  input#last(type='username' placeholder='Username')
-  input#last(type='password' placeholder='Password')
-  button.login(onclick='feed()')
+  input#full(type='text' placeholder='Full Name')
+  input#user(type='username' placeholder='Username')
+  input#pass(type='password' placeholder='Password')
+  button.login(onclick='')
     | Sign Up
     span

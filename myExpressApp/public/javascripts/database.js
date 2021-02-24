@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -6,11 +6,13 @@ var con = mysql.createConnection({
   password: "fitfriends488",
   database: "FitFriends"
 });
-
+var username ='lep';
+var name='luke';
+var pass="what";
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  var sql = "INSERT INTO User VALUES ('brs1014', 'password', 'Benjamin Strawser')";
+  var sql = "INSERT INTO User VALUES ('" + username + "','" + pass + "','" + name + "')";  
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");
