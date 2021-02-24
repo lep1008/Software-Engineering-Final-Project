@@ -4,57 +4,47 @@ body {
     background-repeat: no-repeat;
     background-size:100%;
 }
-
 h1 {
     text-align: center;
     background-color:#29abe2;
-
 }
 div {
     text-align: left;
-    margin-top:15px;
-    background-position-x: center;
-    margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  height: 70%;;
-
+    /*background-position-x: center;*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 125px;
+     padding-bottom: 45px;
+    height: 80%;
+    min-width: 325px;
+    max-width: 25%;
 }
 .form {
     background-color: white !important;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 32.5%;
-  
     border-style: solid;
     border-color:#e1e2e3;
     border-width: thin;
-
 }
 input {
     display: block;
-margin-left: auto;
-margin-right:auto;;
-margin-top:15px;
-    width: 500px;
-    height: 50px;;
-    font-size: large;
-    border-color:#e1e2e3;;
-    
+    margin-left: auto;
+    margin-right:auto;
+    margin-top:15px;
+    height: 35px;
+    width: 75%;
+    font-size: medium;
+    border-color:#e1e2e3;
 }
-
-
-
-
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top:50px;
-    margin-bottom: 5px;;
-    width: 40%;
-    height: 250px;;
+    margin-top:30px;
+    margin-bottom: 5px;
+    width: 35%;
     border-color: white  !important;
 }
 a {
@@ -66,41 +56,31 @@ a {
     text-decoration: underline;
     color: #29abe2;
 }
-
 button  {
-display: block;
-background-color:  #29abe2;
-border:none;
-border-radius: 12px;;
-  margin-top:30px;
-  width:50%;
-  height: 50px;
-  font-size: x-large;
-  margin-left: 15px;;
-  margin-left: auto;
-  margin-right: auto;
-  text-emphasis-color: white;
-  cursor: pointer;
-  color:white;
+    display: block;
+    background-color:  #29abe2;
+    border:none;
+    border-radius: 12px;;
+    margin-top:30px;
+    width:50%;
+    height: 50px;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-emphasis-color: white;
+    cursor: pointer;
+    color:white;
 }
-
-
 button:hover {
-
-color:black;
-
-
-
+    color:black;
 }
-
 a:hover {
     color:black;
 }
-
 #username {
     margin-top:-15px !important;
 }
-
 #first {
     margin-top:-15px !important;
 }
