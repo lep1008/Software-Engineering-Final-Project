@@ -84,3 +84,23 @@ a:hover {
 #first {
     margin-top:-15px !important;
 }
+
+.signUp  {
+    display: block;
+    background-color:  #29abe2;
+    border:none;
+    border-radius: 12px;;
+    margin-top:30px;
+    width:50%;
+    height: 50px;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-emphasis-color: white;
+    cursor: pointer;
+    color:white;
+}
+.signUp:hover {
+    color:black;
+}
