@@ -1,14 +1,25 @@
 body {
     background-color:#fafafa;
+ 
+    background-repeat: no-repeat;
     background-size:100%;
 }
-.loginForm {
+h1 {
+    text-align: center;
+    background-color:#29abe2;
+}
+div {
     text-align: left;
+    /*background-position-x: center;*/
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 125px;
-    padding-bottom: 45px;
-    height: 55%;
+     padding-bottom: 45px;
+    height: 80%;
     min-width: 325px;
     max-width: 25%;
+}
+.form {
     background-color: white !important;
     display: block;
     margin-left: auto;
@@ -16,41 +27,6 @@ body {
     border-style: solid;
     border-color:#e1e2e3;
     border-width: thin;
-}
-.signupLink {
-    visibility: hidden;
-}
-.columnLeft {
-    height: 100%;
-    width: 70%;
-    height: 100%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top: 20px;
-    left: 0;
-    background-color:#fafafa;
-}
-.columnRight {
-    height: 100%;
-    width: 40%;
-    height: 100%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top: 20px;
-    right: 0;
-    background-color: #29abe2;
-}
-@media screen and (max-width:900px), screen and (max-height:500px) {
-    .columnRight { 
-        display: none;
-    }
-    .columnLeft { 
-        display: block; visibility: visible; 
-        width: 100%;
-    }
-    .signupLink {
-        visibility: visible;
-    }
 }
 input {
     display: block;
@@ -62,7 +38,7 @@ input {
     font-size: medium;
     border-color:#e1e2e3;
 }
-.logoImg {
+img {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -71,7 +47,7 @@ input {
     width: 35%;
     border-color: white  !important;
 }
-.signupLink {
+a {
     display: block;
     text-align: center;
     font-size: medium;
@@ -80,7 +56,7 @@ input {
     text-decoration: underline;
     color: #29abe2;
 }
-.loginBtn  {
+button  {
     display: block;
     background-color:  #29abe2;
     border:none;
@@ -96,10 +72,10 @@ input {
     cursor: pointer;
     color:white;
 }
-.login:hover {
+button:hover {
     color:black;
 }
-.signupLink:hover {
+a:hover {
     color:black;
 }
 #username {
@@ -108,13 +84,23 @@ input {
 #first {
     margin-top:-15px !important;
 }
-.welcomeText {
-    color: white;
-    font-size: 300%;
-    text-align: center;
-    margin-top: 45%;
+
+.signUp  {
+    display: block;
+    background-color:  #29abe2;
+    border:none;
+    border-radius: 12px;;
+    margin-top:30px;
+    width:50%;
+    height: 50px;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-emphasis-color: white;
+    cursor: pointer;
+    color:white;
 }
-.p1Text {
-    color:#fafafa;
-    text-align: center;
+.signUp:hover {
+    color:black;
 }

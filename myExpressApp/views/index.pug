@@ -1,15 +1,20 @@
 doctype html
 head
   meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1')
-  title= title 
+  meta(name='viewport' content='width = device-width, initial-scale = 1')
+  title Log in
   link(rel='stylesheet' href='stylesheets/login.css')
   script(type='text/javascript' src='javascripts/links.js')
-.form
-  img(src='images/logo.png')
-  input#username(type='text' placeholder='Username')
-  input#password(type='password' placeholder='Password')
-  button.login(onclick='login()')
-    | Log In
-    span
-  a(onclick='signUp()') Sign Up
+.columnLeft
+  .loginForm
+    img.logoImg(src='images/logo.png')
+    input#username(type='text' placeholder='Username')
+    input#password(type='password' placeholder='Password')
+    button.loginBtn(onclick='login()')
+      | Log In
+      span
+    a.signupLink(onclick='signUp()') Sign Up
+.columnRight
+  h1.welcomeText Welcome Back!
+  p.p1Text Nice to see you again! Enter your login credentials to sign in to FitFriends.
+
