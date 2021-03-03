@@ -8,7 +8,7 @@ head
 form(action='/submitform/', method='POST')
   .form
     img(src='/images/logo.png')
-    input#first(type='text', placeholder='Full Name', name='name')
-    input(type='username', placeholder='Username', name='user')
-    input(type='password', placeholder='Password' name='pass')
+    input#first(type='text', placeholder='Full Name', name='name', maxLength='25', required pattern="[a-zA-Z]*", title="hi luke")
+    input(type='username', placeholder='Username', name='user', maxLength='25', required="required")
+    input(type='password', placeholder='Password' name='pass', maxLength='25', required="required")
     input(class='signUp', type='submit', value='Sign Up')
