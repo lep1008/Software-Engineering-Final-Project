@@ -15,8 +15,8 @@ head
   .form
     form(action='/submitform/', method='POST')
         img.logoImg(src='images/logo.png')
-        input#first(type='text', placeholder='Full Name', name='name')
-        input#username(type='username', placeholder='Username', name='user')
-        input#password(type='password', placeholder='Password' name='pass')
+        input#first(type='text', placeholder='Full Name', name='name', maxLength='25', required pattern="[a-zA-Z ]*", oninvalid="this.setCustomValidity('Full Name Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
+        input#username(type='username', placeholder='Username', name='user', maxLength='25', required="required", oninvalid="this.setCustomValidity('Username Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
+        input#password(type='password', placeholder='Password' name='pass', maxLength='25', required="required", oninvalid="this.setCustomValidity('Password Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
         input(class='signUp', type='submit', value='Sign Up')
         a.loginLink(onclick='') Already have an account? Log in
