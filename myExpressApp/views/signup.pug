@@ -8,7 +8,7 @@ head
 form(action='/submitform/', method='POST')
   .form
     img(src='/images/logo.png')
-    input#first(type='text', placeholder='Full Name', name='name', maxLength='25', required pattern="[a-zA-Z]*", title="hi luke")
-    input(type='username', placeholder='Username', name='user', maxLength='25', required="required")
-    input(type='password', placeholder='Password' name='pass', maxLength='25', required="required")
+    input#first(type='text', placeholder='Full Name', name='name', maxLength='25', required pattern="[a-zA-Z ]*", oninvalid="this.setCustomValidity('Full Name Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
+    input(type='username', placeholder='Username', name='user', maxLength='25', required="required", oninvalid="this.setCustomValidity('Username Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
+    input(type='password', placeholder='Password' name='pass', maxLength='25', required="required", oninvalid="this.setCustomValidity('Password Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
     input(class='signUp', type='submit', value='Sign Up')
