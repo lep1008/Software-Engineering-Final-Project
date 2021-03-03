@@ -7,10 +7,16 @@ var con = mysql.createPool({
   password: "fitfriends488",
   database: "FitFriends"
 });
+
+
 //global variables only to be used in /submit form and /feed
 var username=""; 
 var password="";
 var name="";
+
+
+//disables direct access to profile page
+var blocker=true;
 
 
 
@@ -96,7 +102,7 @@ router.post('/submitform',function(req,res,next) {
 
 
 
-
+blocker=false;
 console.log(req.body.name);
 console.log(req.body.user);
 console.log(req.body.pass);
@@ -121,7 +127,7 @@ con.getConnection(function(err) {
 
 
 
-  res.redirect('/feed');
+  res.redirect('/profile');
 
 
 
@@ -151,8 +157,13 @@ router.get("/signup", (req, res) => {
 
 
 
-router.get("/feed", (req, res) => {
-res.render('feed', {user: username,name: name, pass: password});
+router.get("/profile", (req, res) => {
+  if(blocker==true)
+  {
+    res.redirect('/');
+  }
+  else
+  res.render('profile', {user: username,name: name, pass: password});
 });
 
 
