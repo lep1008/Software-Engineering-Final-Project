@@ -18,7 +18,7 @@ body {
     border-width: thin;
 }
 .signupLink {
-    visibility: hidden;
+    visibility: visible;
 }
 .columnLeft {
     height: 100%;

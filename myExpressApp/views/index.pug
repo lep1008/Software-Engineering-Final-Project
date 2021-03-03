@@ -7,13 +7,12 @@ head
   script(type='text/javascript' src='javascripts/links.js')
 .columnLeft
   .loginForm
-    img.logoImg(src='images/logo.png')
-    input#username(type='text' placeholder='Username')
-    input#password(type='password' placeholder='Password')
-    button.loginBtn(onclick='login()')
-      | Log In
-      span
-    a.signupLink(onclick='signUp()') Sign Up
+    form(action='/login/', method='POST')
+        img.logoImg(src='images/logo.png')
+        input#username(type='text' placeholder='Username' name='user')
+        input#password(type='password' placeholder='Password' name='pass')
+        input(class='signUp', type='submit', value='Log In')
+        a.signupLink(onclick='signUp()') Sign Up
 .columnRight
   h1.welcomeText Welcome Back!
   p.p1Text Nice to see you again! Enter your login credentials to sign in to FitFriends.

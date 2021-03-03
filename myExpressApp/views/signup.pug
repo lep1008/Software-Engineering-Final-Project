@@ -8,7 +8,7 @@ head
 form(action='/submitform/', method='POST')
   .form
     img(src='/images/logo.png')
-    input(type='text', placeholder='Full Name', name='name')
+    input#first(type='text', placeholder='Full Name', name='name')
     input(type='username', placeholder='Username', name='user')
     input(type='password', placeholder='Password' name='pass')
     input(class='signUp', type='submit', value='Sign Up')
