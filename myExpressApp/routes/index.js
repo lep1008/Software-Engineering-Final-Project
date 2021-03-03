@@ -27,8 +27,8 @@ router.post('/login',function(req,res,next) {
   var found=false;
   username=req.body.user;
   password=req.body.pass
-  // console.log(u);
-  // console.log(p);
+  blocker=false;
+ 
 
 
 ///////////////////////////////////
@@ -40,7 +40,7 @@ router.post('/login',function(req,res,next) {
 con.getConnection(function(err) {
 
   if (err) throw err;
-  con.query("SELECT* FROM User WHERE Username = '"+username+"' LIMIT 1", function (err, result, fields) {
+  con.query("SELECT* FROM User WHERE Username = '"+username+"' AND Password = '"+password+"' LIMIT 1", function (err, result, fields) {
     
     if (err) throw err;
 
@@ -66,7 +66,7 @@ con.getConnection(function(err) {
 setTimeout(() => {
   if(found===true)
 {
-  res.redirect('/feed');
+  res.redirect('/profile');
   console.log("user found");
 }
 else 
@@ -164,6 +164,7 @@ router.get("/profile", (req, res) => {
   }
   else
   res.render('profile', {user: username,name: name, pass: password});
+  blocker=true;
 });
 
 
