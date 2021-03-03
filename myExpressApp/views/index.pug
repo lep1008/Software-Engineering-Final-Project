@@ -6,14 +6,15 @@ head
   link(rel='stylesheet' href='stylesheets/login.css')
   script(type='text/javascript' src='javascripts/links.js')
 .columnLeft
+  h1.loginHeader Log in to FitFriends
   .loginForm
     form(action='/login/', method='POST')
         img.logoImg(src='images/logo.png')
         input#username(type='text' placeholder='Username' name='user')
         input#password(type='password' placeholder='Password' name='pass')
-        input(class='signUp', type='submit', value='Log In')
+        input(class='loginBtn', type='submit', value='Log In')
         a.signupLink(onclick='signUp()') Sign Up
 .columnRight
-  h1.welcomeText Welcome Back!
-  p.p1Text Nice to see you again! Enter your login credentials to sign in to FitFriends.
-
+  h1.welcomeText New to FitFriends?
+  p.p1Text Create an account now to access a growing community of fitness enthusiasts! 
+  a.signupBtn(onclick='signUp()') Sign Up

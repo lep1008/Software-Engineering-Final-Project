@@ -10,6 +10,7 @@ function feed()
 
 }
 
-
-
-
+function index() 
+{
+    location.href='/';
+}
