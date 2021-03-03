@@ -111,6 +111,14 @@ body {
         visibility: visible;
     }
 }
+@media screen and (max-height:700px) {
+    .columnLeft { 
+        zoom: 80%;
+    }
+    .columnRight { 
+        zoom: 80%;
+    }
+}
 .logoImg {
     display: block;
     margin-left: auto;
