@@ -40,7 +40,7 @@ router.post('/login',function(req,res,next) {
 con.getConnection(function(err) {
 
   if (err) throw err;
-  con.query("SELECT* FROM User WHERE Username = '"+username+"' AND Password = '"+password+"' LIMIT 1", function (err, result, fields) {
+  con.query("SELECT Name FROM User WHERE Username = '"+username+"' AND Password = '"+password+"' LIMIT 1", function (err, result, fields) {
     
     if (err) throw err;
 
@@ -52,10 +52,17 @@ con.getConnection(function(err) {
       found=false;
     }
     else 
+   
     {
       found=true;
       console.log(result);
+      name=JSON.stringify(result);
+      console.log(name);
+      name=name.substring(name.indexOf(":"));
+      name=name.substring(name.indexOf("\"")+1,name.lastIndexOf("\""));
+      
      
+
   
     }
     
@@ -164,7 +171,10 @@ router.get("/profile", (req, res) => {
   }
   else
   res.render('profile', {user: username,name: name, pass: password});
-  blocker=true;
+
+    blocker=true;
+
+
 });
 
 
