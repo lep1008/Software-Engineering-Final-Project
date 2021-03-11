@@ -2,12 +2,51 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Home Feed
-  link(rel='stylesheet' href='stylesheets/feed.css')
+  title Profile Page
+  link(rel='stylesheet' href='stylesheets/profile.css')
   script(type='text/javascript' src='javascripts/links.js')
-img(src='images/logo.png')
-.form
-  h1='Full Name: '+name
-  h1='Username: ' +user
-  h1='Password: '+pass
+.topBar
+  img.headerLogo(src='images/logoWhite.png')
+  form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
+    button.logoutBtn(onclick="logout()") Log Out
+.leftTab
+  button.homeBtn Home
+  br
+  button.exploreBtn Explore
+  br
+  button.exploreBtn Profile
+  br
+  button.settingsBtn Settings
+  br
+.rightTab
+  table.profileHeader
+    tr
+      td
+      
 
+          form(action='/upload/', method='POST' enctype="multipart/form-data" class="profilePicForm")
+            input#image(class='invisible' type="file"  accept="image/* " onchange="previewFile()" name='image')
+            label(for="image" ) 
+              img.profilePic(src=pic class="profilepic" name="profilepic")
+          
+
+      td
+        h1.profileName(class="example")=name
+        p.profileUsername=user
+        table.followTable
+          tr
+            td
+              p.postTitle Posts
+              p.postCount=posts
+            td
+              p.followerTitle Followers
+              p.followerCount=followers
+            td
+              p.followingTitle Following
+              p.followingCount=following
+    tr
+      td
+        button#followBtn.followBtn Follow
+      td
+        p.bioText=bio
+  .content

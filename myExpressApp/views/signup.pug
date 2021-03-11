@@ -13,7 +13,7 @@ head
 .columnRight
   h1.signUpHeader Create FitFriends Account
   .form
-    form(action='/submitform/', method='POST')
+    form(action='/signUp/', method='POST')
         img.logoImg(src='images/logo.png')
         input#first(type='text', placeholder='Full Name', name='name', maxLength='25', required pattern="[a-zA-Z ]*", oninvalid="this.setCustomValidity('Full Name Invalid')", onchange="try{setCustomValidity('')}catch(e){}")
         input#username(type='username', placeholder='Username', name='user', maxLength='25', required="required", oninvalid="this.setCustomValidity('Username Invalid')", onchange="try{setCustomValidity('')}catch(e){}")

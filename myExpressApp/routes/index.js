@@ -66,18 +66,14 @@
         if (err) throw err;
         if (result.length ===0)
         {
-          console.log("empty");
           found=false;
         }
         else 
         {
           found=true;
-          console.log(result);
           followers=JSON.stringify(result);
-          console.log(followers);
           followers=followers.substring(followers.indexOf(":"));
           followers=followers.substring(1,followers.lastIndexOf("}"));
-          console.log(followers);
         }
       });
       //Retrieves following counter from database using same logic
@@ -86,18 +82,14 @@
         if (err) throw err;
         if (result.length ===0)
         {
-          console.log("empty");
           found=false;
         }
         else 
         {
           found=true;
-          console.log(result);
           following=JSON.stringify(result);
-          console.log(following);
           following=following.substring(following.indexOf(":"));
           following=following.substring(1,following.lastIndexOf("}"));
-          console.log(following);
         }
       })
       //Retrieves posts counter from database using same logic
@@ -106,18 +98,14 @@
         if (err) throw err;
         if (result.length ===0)
         {
-          console.log("empty");
           found=false;
         }
         else 
         {
           found=true;
-          console.log(result);
           posts=JSON.stringify(result);
-          console.log(posts);
           posts=posts.substring(posts.indexOf(":"));
           posts=posts.substring(1,posts.lastIndexOf("}"));
-          console.log(posts);
         }
       })
       //Retrieves bio from database using same logic
@@ -126,18 +114,14 @@
         if (err) throw err;
         if (result.length ===0)
         {
-          console.log("empty");
           found=false;
         }
         else 
         {
           found=true;
-          console.log(result);
           bio=JSON.stringify(result);
-          console.log(bio);
           bio=bio.substring(bio.indexOf(":"));
           bio=bio.substring(bio.indexOf("\"")+1,bio.lastIndexOf("\""));
-          console.log(bio);
         }
       })
       //Retrieves profile picture from database using same logic
@@ -146,19 +130,14 @@
         if (err) throw err;
         if (result.length ===0)
         {
-          console.log("empty");
           found=false;
         }
         else 
         {
-          found=true;
-          console.log(result);
-         
+          found=true;         
           pic=JSON.stringify(result);
-          console.log(pic);
           pic=pic.substring(pic.indexOf(":"));
           pic=pic.substring(pic.indexOf("\"")+1,pic.lastIndexOf("\""));
-          console.log(pic);
           if(pic=="")
           {
             pic='images/profilePic.jpg'
@@ -194,7 +173,8 @@
     name=req.body.name; //new user's full name is stored
     followers=0; //default followers count
     following=0; //default following count
-    posts=0; //defalut posts count
+    posts=0; //default posts count
+    bio=""//default bio
     //Inserts the new users into the database
     con.getConnection(function(err)
     {
@@ -228,7 +208,6 @@ router.post('/upload', upload.single('image'),(req, res) => {
   con.getConnection(function(err)
   {
     if (err) throw err;
-    console.log("Connected!");
     var sql = "UPDATE USER SET Pic='"+pic+"' WHERE Username='"+username+"';"; //query to insert picture name
     con.query(sql, function (err, result)
     {
@@ -245,14 +224,14 @@ router.post('/upload', upload.single('image'),(req, res) => {
 //User is logged out of system
 router.post('/logout',(req, res) => {
   //globals are reset to defaults
-  var username=""; 
-  var password="";
-  var name="";
-  var following="";
-  var followers="";
-  var posts="";
-  var bio="";
-  var pic='images/profilePic.jpg';
+   username=""; 
+   password="";
+   name="";
+   following="";
+   followers="";
+   posts="";
+   bio="";
+   pic='images/profilePic.jpg';
 
 
 res.redirect('/'); //go to login screen

@@ -39,12 +39,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.get('/signup', (req, res) => {
-  res.render('signup', {title: "something"});
-});
-
-
-
-
-
 module.exports = app;

@@ -1,0 +1,180 @@
+html {
+    height: 100%;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+}
+.topBar {
+    width: 100%;
+    height: 90px;
+    background: #3FB4E5; /* BLUE FitFriends */
+    border-bottom: 1px solid #A7A7A7;
+}
+.leftTab {
+    float: left;
+    width: 19.9%;
+    height: 100%;
+    background-color: white;
+    border-right: 1px solid #A7A7A7;
+}
+.homeBtn {
+    margin-top: 40px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.homeBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+    cursor: pointer;
+}
+.exploreBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.exploreBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+    cursor: pointer;
+}
+.profileBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.profileBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+    cursor: pointer;
+}
+.settingsBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+.settingsBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+}
+.rightTab {
+    float: right;
+    width: 79.99%;
+    height: 100%;
+    background-color: white;
+}
+.headerLogo {
+    float: left;
+    width: 60px;
+    height: 80px;
+    margin-left: 8%;
+    margin-top: 10px;
+}
+.logoutBtn {
+    float: right;
+    border: 3px solid white;
+    background-color: transparent;
+    border-radius: 26px;
+    margin-top: 23px;
+    margin-right: 5%;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+.logoutBtn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #3FB4E5
+}
+.profileHeader {
+    margin-left: 7%;
+    margin-top: 4%;
+}
+.profilePic {
+    border: 2px solid #707070;
+    border-radius: 34px;
+    width: 190px;
+    height: 190px;
+}
+.profileName {
+    margin-left: 40px;
+    margin-top: 5px;
+    font-size: 32px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+.profileUsername {
+    margin-left: 40px;
+    margin-top: -12px;
+    font-size: 24px;
+    color: black;
+    opacity: 80%;
+    font-family: Arial, sans-serif;
+    font-weight: lighter;
+}
+.followTable {
+    margin-left: 40px;
+    margin-top: -10px;
+}
+.postTitle, .followerTitle, .followingTitle {
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+.followTable td {
+    padding-right: 20px;
+    text-align: center;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+}
+.bioText {
+    width: 375px;
+    margin-left: 40px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+.followBtn {
+    margin-left: 33px;
+    border: 3px solid white;
+    background-color: #3FB4E5;
+    border-radius: 8px;
+    width: 130px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.followBtn:hover {
+    cursor: pointer;
+    margin-left: 30px;
+    height: 55px;
+    width: 135px;
+}
+
+.invisible {
+    display: none;
+    cursor: pointer;
+}
+
+.profilepic {
+    cursor: pointer;
+}
