@@ -93,6 +93,111 @@ setTimeout(() => {
 
 
 
+  router.get('/AddWorkout', function(req, res, next)
+{
+
+    var date= new Date();
+    var month=date.getMonth()+1;
+    
+    var hour=date.getHours();
+    var minute=date.getMinutes();
+    if(hour>12)
+    {
+      hour=hour-12;
+      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" PM";
+    }
+    else {
+      if(hour==0)
+      {
+        hour=12;
+      }
+      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" AM";
+    }
+
+    
+    var caption;
+    var name;
+    var image;
+    var exercise;
+    var sets;
+    var reps;
+    var weight;
+    
+    // //date user caption
+    // con.getConnection(function(err)
+    // {
+    //   if (err) throw err;
+    //   var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + req.body.pass + "','" + req.body.name + "',0,0,0,null,null)"; //query to insert user  
+    //   con.query(sql, function (err, result)
+    //   {
+    //     if (err) throw err;
+    //   });
+    // });
+    
+    
+    
+    
+    
+    res.render('Workout');
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    });
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
