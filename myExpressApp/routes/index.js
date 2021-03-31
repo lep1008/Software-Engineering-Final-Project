@@ -156,6 +156,7 @@
       }
       else 
       {
+        
         res.redirect('/'); //user does not exist go back to login screen
       }
     }, 2000);
@@ -175,7 +176,7 @@
     following=0; //default following count
     posts=0; //default posts count
     bio=""//default bio
-    //Inserts the new users into the database
+    //Inserts the new user into the database
     con.getConnection(function(err)
     {
       if (err) throw err;
@@ -264,6 +265,7 @@ res.redirect('/'); //go to login screen
 //Gets Profile Page
   router.get("/profile", (req, res) => 
   {
+
     if(blocker==true) //we do not want people going directly to profile page without logging in or signing up
     {
       res.redirect('/'); //go to login screen
