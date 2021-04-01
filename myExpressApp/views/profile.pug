@@ -5,6 +5,7 @@ head
   title Profile Page
   link(rel='stylesheet' href='stylesheets/profile.css')
   script(type='text/javascript' src='javascripts/links.js')
+  script(type='text/javascript' src='javascripts/profile.js')
 .topBar
   img.headerLogo(src='images/logoWhite.png')
   form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
@@ -48,5 +49,8 @@ head
       td
         button#followBtn.followBtn Follow
       td
-        p.bioText=bio
+        div(id='bioDiv', contenteditable='false')
+          p.bioText=bio
+      td
+        input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
   .content
