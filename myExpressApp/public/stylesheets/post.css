@@ -1,0 +1,145 @@
+html {
+    height: 100%;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+}
+.topBar {
+    width: 100%;
+    height: 90px;
+    background: #3FB4E5;
+    border-bottom: 1px solid #A7A7A7;
+}
+.leftTab {
+    float: left;
+    width: 19.9%;
+    height: 100%;
+    background-color: white;
+    border-right: 1px solid #A7A7A7;
+}
+.homeBtn {
+    margin-top: 40px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.homeBtn:hover {
+    background-color: #3FB4E5;      /* blue fitfriends */
+    color: white;
+    cursor: pointer;
+}
+.exploreBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.exploreBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+    cursor: pointer;
+}
+.profileBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+}
+.profileBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+    cursor: pointer;
+}
+.settingsBtn {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+.settingsBtn:hover {
+    background-color: #3FB4E5;
+    color: white;
+}
+.rightTab {
+    float: right;
+    width: 79.99%;
+    height: 100%;
+    background-color: white;
+}
+.headerLogo {
+    float: left;
+    width: 60px;
+    height: 80px;
+    margin-left: 8%;
+    margin-top: 10px;
+    position: static;
+}
+.postBtn {
+    margin-left: 65%;
+    margin-top: 24px;
+    width: 100px; 
+    height: 40px;
+    border: 0px solid black;
+    border-radius: 30px;
+    background-color: white;
+    color: #3FB4E5;
+    font-size: 20px;
+}
+.postBtn:hover {
+    cursor: pointer;
+    background-color: #3FB4E5;
+    color: white;
+    border: 2px solid white;
+}
+.logoutBtn {
+    float: right;
+    border: 3px solid white;
+    background-color: transparent;
+    border-radius: 26px;
+    margin-top: 23px;
+    margin-right: 5%;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+.logoutBtn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #3FB4E5
+}
+.workoutSets {
+    width: 50px;
+}
+.workoutReps {
+    width: 50px;
+}
+.workoutWeight {
+    width: 75px;
+}
+.setsLabel {
+    margin-left: 135px;
+    display: inline-block;
+}
+.repsLabel {
+    padding-left: 30px;
+    display: inline-block;
+}
+.weightLabel {
+    padding-left: 15px;
+    display: inline-block;
+}

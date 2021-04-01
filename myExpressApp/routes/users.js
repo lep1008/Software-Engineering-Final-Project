@@ -30,7 +30,27 @@ var con = mysql.createPool
 
 /////////////////////////////////////////////////////////////
 router.get('/test', function(req, res, next) {  
-var cardio=new Array(8);
+
+  
+
+});
+//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+  router.get('/AddWorkout', function(req, res, next)
+{
+  var cardio=new Array(8);
 var lifts=new Array(9);
   con.getConnection(function(err)
   {
@@ -75,12 +95,6 @@ var lifts=new Array(9);
     });
   });
 
-setTimeout(() => {
-  res.render('test',{cardio:cardio,lifts:lifts});
-}, 5000);
-});
-//////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
 
 
 
@@ -93,8 +107,23 @@ setTimeout(() => {
 
 
 
-  router.get('/AddWorkout', function(req, res, next)
-{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     var date= new Date();
     var month=date.getMonth()+1;
@@ -138,7 +167,9 @@ setTimeout(() => {
     
     
     
-    res.render('Workout');
+    setTimeout(() => {
+      res.render('Workout',{cardio:cardio,lifts:lifts});
+    }, 5000);
     
     
     

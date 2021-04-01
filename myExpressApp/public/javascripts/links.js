@@ -25,6 +25,18 @@ function logout() {
 }
 
 
+function workout() {
+
+  location.href="/AddWorkout";
+
+
+}
+
+
+
+
+
+
 
 
 //referenced: https://gist.github.com/zulhfreelancer/1a1b68062da349d6268f0aaa43991b99 

@@ -1,0 +1,50 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Profile Page
+    link(rel='stylesheet' href='stylesheets/post.css')
+    script(type='text/javascript' src='javascripts/links.js')
+.topBar
+    img.headerLogo(src='images/logoWhite.png')
+    button.postBtn + Post
+    button.logoutBtn Log Out
+.leftTab
+    button.homeBtn Home
+    br
+    button.exploreBtn Explore
+    br
+    button.exploreBtn Profile
+    br
+    button.settingsBtn Settings
+    br
+.rightTab
+    form("newPost")
+        h1 Add a Workout
+        h4 Name of Workout:
+        input.workoutName(name='workoutName' type='text')
+        br
+        h4 Add Caption:
+        input.workoutCaption(name='workoutCaption' type='text')
+        br
+        h4 Add an Exercise:
+        label Lifts:
+        select.lifts(name='lifts')
+            for l in lifts 
+                option=l
+        label(for='cardio') Cardio:
+        select.cardio(name='cardio')
+             for x in cardio 
+                option=x
+        br
+        p Exercises Added:
+        p(name='addedExercises')
+        label.setsLabel Sets
+        label.repsLabel Reps
+        label.weightLabel Weight (lbs)
+        br
+        label(name='exerciseName')
+        b Bench Press
+        input.workoutSets(name='workoutSets' type='number')
+        input.workoutReps(name='workoutReps' type='number')
+        input.workoutWeight(name='workoutWeight' type='number')
