@@ -9,5 +9,9 @@ function editBio()
     {
         document.getElementById('bioDiv').contentEditable = false;
         document.getElementById("bioButton").value="Edit Bio";
+        window.alert(document.getElementById('bio').innerHTML);
+        var form = document.querySelector('.submitBio');
+        window.alert(form);
+        form.submit();
     }
 }

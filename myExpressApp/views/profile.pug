@@ -45,12 +45,13 @@ head
             td
               p.followingTitle Following
               p.followingCount=following
-    tr
-      td
-        button#followBtn.followBtn(onclick="workout()") Add Workout
-      td
-        div(id='bioDiv', contenteditable='false')
-          p.bioText=bio
-      td
-        input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
+    form(class='submitBio', action='/bio/', method='POST', enctype="multipart/form-data")
+      tr
+        td
+          button#followBtn.followBtn Follow
+        td
+          div(id='bioDiv', contenteditable='false')
+            p#bio.bio(name='bio')=bio
+        td
+          input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
   .content

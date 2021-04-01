@@ -30,27 +30,7 @@ var con = mysql.createPool
 
 /////////////////////////////////////////////////////////////
 router.get('/test', function(req, res, next) {  
-
-  
-
-});
-//////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-  router.get('/AddWorkout', function(req, res, next)
-{
-  var cardio=new Array(8);
+var cardio=new Array(8);
 var lifts=new Array(9);
   con.getConnection(function(err)
   {
@@ -95,6 +75,12 @@ var lifts=new Array(9);
     });
   });
 
+setTimeout(() => {
+  res.render('test',{cardio:cardio,lifts:lifts});
+}, 5000);
+});
+//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 
 
@@ -107,23 +93,8 @@ var lifts=new Array(9);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  router.get('/AddWorkout', function(req, res, next)
+{
 
     var date= new Date();
     var month=date.getMonth()+1;
@@ -167,9 +138,7 @@ var lifts=new Array(9);
     
     
     
-    setTimeout(() => {
-      res.render('Workout',{cardio:cardio,lifts:lifts});
-    }, 5000);
+    res.render('Workout');
     
     
     
@@ -232,3 +201,18 @@ module.exports = router;
 
 
 
+//bio post method
+router.post('/bio',(req, res) => {
+  var bio = req.body.bio;
+  username = 'benny';
+  con.getConnection(function(err)
+  {
+    if (err) throw err;
+    var sql = "UPDATE USER SET Bio='"+bio+"' WHERE Username='"+username+"';"; //query to insert picture name
+    con.query(sql, function (err, result)
+    {
+      if (err) throw err;
+    });
+  });
+  res.redirect('/');
+});
