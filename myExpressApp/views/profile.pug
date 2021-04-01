@@ -45,13 +45,14 @@ head
             td
               p.followingTitle Following
               p.followingCount=following
-    form(class='submitBio', action='/bio/', method='POST', enctype="multipart/form-data")
+  
       tr
         td
-          button#followBtn.followBtn Follow
+          button#followBtn.followBtn(onclick="workout()") Follow
         td
-          div(id='bioDiv', contenteditable='false')
+          form(class='submitBio', action='/bio/', method='POST', enctype="multipart/form-data")
+            div(id='bioDiv', contenteditable='false')
             p#bio.bio(name='bio')=bio
         td
-          input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
+          //- input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
   .content
