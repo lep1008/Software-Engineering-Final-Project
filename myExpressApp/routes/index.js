@@ -240,6 +240,35 @@ res.redirect('/'); //go to login screen
 
 });
 
+router.post('/bio',function(req,res,next)
+  {
+
+    bio=req.body.value;
+    con.getConnection(function(err)
+    {
+      if (err) throw err;
+      var sql = "UPDATE USER SET Bio='"+bio+"' WHERE Username='"+username+"';"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+      });
+    });
+    
+    
+res.redirect('/profile');
+
+
+  });
+
+
+
+
+
+
+
+
+
+
 
 
 

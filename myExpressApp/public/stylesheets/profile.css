@@ -178,3 +178,39 @@ body {
 .profilepic {
     cursor: pointer;
 }
+
+.bio {
+    width:500px;
+    height:100px;
+    resize: none;
+
+  /* font-weight: bold; */
+  font-size: larger;
+  background-color: white;
+  margin-left: 40px;;
+
+}
+.bio:disabled {
+    border: none;
+    width:500px;
+    height:100px;
+    resize: none;
+ background-color: red;
+  /* font-weight: bold; */
+  font-size: larger;
+  background-color: white;
+  margin-left: 40px;;
+
+}
+
+.follow {
+    display: inline-block;
+
+}
+.bioButton {
+float:left
+
+}
+.value {
+    display: none;
+}

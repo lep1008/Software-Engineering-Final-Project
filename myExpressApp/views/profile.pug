@@ -47,12 +47,16 @@ head
               p.followingCount=following
   
       tr
-        td
+        td(class="follow" name="follow")
           button#followBtn.followBtn(onclick="workout()") Follow
+        td(class="bioData",name="bioData")
+
+
+          form(action='/bio/', method='POST',class='submitBio')
+              input#value(type='text', name='value',class='value')
+              textarea#bio(name='bio', class='bio', maxlength="100" disabled)=bio
+              input(type='submit', class="invisible")
+            
         td
-          form(class='submitBio', action='/bio/', method='POST', enctype="multipart/form-data")
-            div(id='bioDiv', contenteditable='false')
-            p#bio.bio(name='bio')=bio
-        td
-          //- input#bioButton(type='button', value='Edit Bio', onclick='editBio()')
+          input#bioButton(name='bioButton',class='bioButton',type='button', value='Edit Bio', onclick='editBio()')
   .content
