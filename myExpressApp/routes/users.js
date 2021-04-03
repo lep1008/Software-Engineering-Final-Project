@@ -50,125 +50,38 @@ router.get('/test', function(req, res, next) {
 
   router.get('/AddWorkout', function(req, res, next)
 {
-  var cardio=new Array(8);
-var lifts=new Array(9);
+
+var exercises=new Array(9);
+  
   con.getConnection(function(err)
   {
     if (err) throw err;
-    var sql = "SELECT Name FROM Cardio";   
+    var sql = "SELECT Name FROM exercises"; 
     con.query(sql, function (err, result)
     {
       if (err) throw err;
    
-      cardio=result;
+      exercises=result;
 
-    for(i=0;i<cardio.length;i++)
+    for(i=0;i<exercises.length;i++)
     {    
     var helper;
-    helper=JSON.stringify(cardio[i]);
+    helper=JSON.stringify(exercises[i]);
     helper=helper.substring(helper.indexOf(":"));
     helper=helper.substring(helper.indexOf("\"")+1,helper.lastIndexOf("\""));
-    cardio[i]=helper;
+    exercises[i]=helper;
     }
-    cardio.sort();
-    });
-  });
-  con.getConnection(function(err)
-  {
-    if (err) throw err;
-    var sql = "SELECT Name FROM Lifts"; 
-    con.query(sql, function (err, result)
-    {
-      if (err) throw err;
-   
-      lifts=result;
-
-    for(i=0;i<lifts.length;i++)
-    {    
-    var helper;
-    helper=JSON.stringify(lifts[i]);
-    helper=helper.substring(helper.indexOf(":"));
-    helper=helper.substring(helper.indexOf("\"")+1,helper.lastIndexOf("\""));
-    lifts[i]=helper;
-    }
-    lifts.sort();
+    exercises.sort();
     });
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var date= new Date();
-    var month=date.getMonth()+1;
-    
-    var hour=date.getHours();
-    var minute=date.getMinutes();
-    if(hour>12)
-    {
-      hour=hour-12;
-      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" PM";
-    }
-    else {
-      if(hour==0)
-      {
-        hour=12;
-      }
-      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" AM";
-    }
-
-    
-    var caption;
-    var name;
-    var image;
-    var exercise;
-    var sets;
-    var reps;
-    var weight;
-    
-    // //date user caption
-    // con.getConnection(function(err)
-    // {
-    //   if (err) throw err;
-    //   var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + req.body.pass + "','" + req.body.name + "',0,0,0,null,null)"; //query to insert user  
-    //   con.query(sql, function (err, result)
-    //   {
-    //     if (err) throw err;
-    //   });
-    // });
-    
     
     
     
     
     setTimeout(() => {
-      res.render('Workout',{cardio:cardio,lifts:lifts});
+      res.render('Workout',{exercises:exercises});
     }, 5000);
     
     

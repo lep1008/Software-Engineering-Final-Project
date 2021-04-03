@@ -26,6 +26,8 @@
   var bio; //holds value of bio
   var pic='images/profilePic.jpg'; //holds value of profile image source
   var blocker=true; //boolean to disable direct access to views
+  var exerciseVideo;
+  var cardioVideo;
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -259,6 +261,104 @@ res.redirect('/profile');
 
 
   });
+
+
+
+
+  //this now has to include a file and has to be done one by one the workout and excersise will be submitted seperately
+
+  router.post('/post',function(req,res,next)
+  {
+    var workoutName=req.body.workoutName;
+    var caption=req.body.workoutCaption;
+    var lift=req.body.lift;
+    var weight=req.body.weight;
+    var sets=req.body.sets;
+    var reps=req.body.reps;
+    var cardio=req.body.cardio;
+    var minutes=req.body.minutes;
+    var miles=req.body.miles;
+
+    var date= new Date();
+    var month=date.getMonth()+1;
+    var hour=date.getHours();
+    var minute=date.getMinutes();
+    var dateString;
+    if(hour>12)
+    {
+      hour=hour-12;
+      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" PM";
+    }
+    else {
+      if(hour==0)
+      {
+        hour=12;
+      }
+      var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" AM";
+    }
+    
+
+
+    // //Workout info
+    // con.getConnection(function(err)
+    // {
+    //   if (err) throw err;
+    //   var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"')"; //query to insert workout  
+    //   con.query(sql, function (err, result)
+    //   {
+    //     if (err) throw err;
+    //   });
+    // })
+    
+    // //Exercise info
+    // con.getConnection(function(err)
+    // {
+    //   if (err) throw err;
+    //   var sql = "INSERT INTO UserLifts VALUES ('" + lift + "','" + weight + "','" + sets +"','"+ reps+"',null,'"+username+"')";  
+    //   con.query(sql, function (err, result)
+    //   {
+    //     if (err) throw err;
+    //   });
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+  router.post('/ExerciseVideo', upload.single('exerciseVideo'),(req, res) => {
+    exerciseVideo='images/'+req.file.filename; //picture path and name is stored
+    //Stores the picture name into the database
+    console.log(exerciseVideo);
+
+  });
+
 
 
 
