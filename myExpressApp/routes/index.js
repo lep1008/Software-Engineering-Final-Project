@@ -26,8 +26,9 @@
   var bio; //holds value of bio
   var pic='images/profilePic.jpg'; //holds value of profile image source
   var blocker=true; //boolean to disable direct access to views
-  var exerciseVideo;
-  var cardioVideo;
+  var workoutID;
+  var WorkoutName;
+
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -265,24 +266,22 @@ res.redirect('/profile');
 
 
 
-  //this now has to include a file and has to be done one by one the workout and excersise will be submitted seperately
 
-  router.post('/post',function(req,res,next)
+
+
+
+//Adds new workout info
+  router.post('/addWorkout',function(req,res,next)
   {
-    var workoutName=req.body.workoutName;
+     workoutName=req.body.workoutName;
     var caption=req.body.workoutCaption;
-    var lift=req.body.lift;
-    var weight=req.body.weight;
-    var sets=req.body.sets;
-    var reps=req.body.reps;
-    var cardio=req.body.cardio;
-    var minutes=req.body.minutes;
-    var miles=req.body.miles;
-
     var date= new Date();
     var month=date.getMonth()+1;
     var hour=date.getHours();
     var minute=date.getMinutes();
+    if(minute<10) {
+      minute="0"+minute;
+    }
     var dateString;
     if(hour>12)
     {
@@ -297,65 +296,70 @@ res.redirect('/profile');
       var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" AM";
     }
     
+     //Workout info
+    con.getConnection(function(err)
+    {
+      if (err) throw err;
+      var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"',null)"; //query to insert workout  
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+      });
+    })
+
+    setTimeout(() => {
+      con.getConnection(function(err)
+      {
+      con.query("SELECT ID FROM Workout WHERE Date = '"+dateString+"' LIMIT 1", function (err, result, fields)
+      {
+     
+        if (err) throw err;
+        if (result.length ===0)
+        {
+          
+        }
+        else 
+        {
+          workoutID=JSON.stringify(result); //result variable must be converted into a string that can be used 
+          workoutID=workoutID.substring(workoutID.indexOf(":")+1);
+          workoutID=workoutID.substring(0,workoutID.indexOf("}"));
+  
+        
+        }
+      })
+    })
+    }, 1000);
 
 
-    // //Workout info
-    // con.getConnection(function(err)
-    // {
-    //   if (err) throw err;
-    //   var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"')"; //query to insert workout  
-    //   con.query(sql, function (err, result)
-    //   {
-    //     if (err) throw err;
-    //   });
-    // })
-    
-    // //Exercise info
-    // con.getConnection(function(err)
-    // {
-    //   if (err) throw err;
-    //   var sql = "INSERT INTO UserLifts VALUES ('" + lift + "','" + weight + "','" + sets +"','"+ reps+"',null,'"+username+"')";  
-    //   con.query(sql, function (err, result)
-    //   {
-    //     if (err) throw err;
-    //   });
-    // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+setTimeout(() => {
+  res.redirect('/AddExercise')
+}, 1000);
 
   });
 
 
 
 
+  router.post('/Exercise', upload.single('video'),(req, res) => {
+    var exerciseVideo='images/'+req.file.filename; //video path and name is stored
+    var name=req.body.exercise;
+    var sets=req.body.sets;
+    var reps=req.body.reps;
+    var weight=req.body.weight; 
+
+    con.getConnection(function(err)
+    {
+      if (err) throw err;
+      var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"')";  
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+      });
+    })
 
 
 
-
-
-  router.post('/ExerciseVideo', upload.single('exerciseVideo'),(req, res) => {
-    exerciseVideo='images/'+req.file.filename; //picture path and name is stored
-    //Stores the picture name into the database
-    console.log(exerciseVideo);
+    res.redirect('/profile');
 
   });
 
@@ -402,3 +406,58 @@ res.redirect('/profile');
     else
       res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic}); //displays profile page with JSON variables
   });
+
+
+
+  
+
+
+  router.get('/AddExercise', function(req, res, next)
+{
+
+var exercises=new Array(9);
+  
+  con.getConnection(function(err)
+  {
+    if (err) throw err;
+    var sql = "SELECT Name FROM exercises"; 
+    con.query(sql, function (err, result)
+    {
+      if (err) throw err;
+   
+      exercises=result;
+
+    for(i=0;i<exercises.length;i++)
+    {    
+    var helper;
+    helper=JSON.stringify(exercises[i]);
+    helper=helper.substring(helper.indexOf(":"));
+    helper=helper.substring(helper.indexOf("\"")+1,helper.lastIndexOf("\""));
+    exercises[i]=helper;
+    }
+    exercises.sort();
+    });
+  });
+
+
+    
+    
+    console.log(workoutName);
+    
+    setTimeout(() => {
+      res.render('Exercise',{workoutName:workoutName,exercises:exercises});
+    }, 5000);
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    });
+    
+
+
