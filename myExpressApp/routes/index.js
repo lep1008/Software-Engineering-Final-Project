@@ -358,8 +358,10 @@ setTimeout(() => {
     })
 
 
+setTimeout(() => {
+  res.redirect('/profile');
+}, 2000);
 
-    res.redirect('/profile');
 
   });
 
@@ -395,16 +397,80 @@ setTimeout(() => {
 
  
 
+
+
 //Gets Profile Page
+
+
+
+///////////now work on many cases!!!!!!!!
   router.get("/profile", (req, res) => 
   {
+    var id;
+    var date;
+    var name;
+    var image;
 
     if(blocker==true) //we do not want people going directly to profile page without logging in or signing up
     {
       res.redirect('/'); //go to login screen
     }
-    else
-      res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic}); //displays profile page with JSON variables
+    else {
+      con.getConnection(function(err)
+      {
+        if (err) throw err;
+        var sql = "SELECT* from Workout WHERE User='"+username+"'"; 
+        con.query(sql, function (err, result)
+        {
+          if (err) throw err;
+   
+           date=result[0].Date;
+           name=result[0].Name;
+           id=result[0].ID;
+          
+        });
+      });
+
+
+      setTimeout(() => {
+        con.getConnection(function(err)
+        {
+          if (err) throw err;
+          var sql = "SELECT* from UserExercises Where WorkoutID="+id; 
+          con.query(sql, function (err, result)
+          {
+            if (err) throw err;
+     
+            image=result[0].Pic;
+    
+          });
+        });
+      }, 1000);
+
+
+
+
+
+
+      setTimeout(() => {
+
+
+        x= {"name":name,"date":date,"image":image};
+        
+ 
+          console.log(x.image);
+          res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic,x:x}); //displays profile page with JSON variables
+
+
+
+
+
+      }, 2000);
+
+
+
+
+    }
   });
 
 
@@ -412,6 +478,14 @@ setTimeout(() => {
   
 
 
+
+
+
+
+
+
+
+  
   router.get('/AddExercise', function(req, res, next)
 {
 
@@ -442,7 +516,7 @@ var exercises=new Array(9);
 
     
     
-    console.log(workoutName);
+
     
     setTimeout(() => {
       res.render('Exercise',{workoutName:workoutName,exercises:exercises});

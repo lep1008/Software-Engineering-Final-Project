@@ -214,9 +214,9 @@ float:left
 .value {
     display: none;
 }
-/* 
-.video {
-    height:500px;
-    width: 500px;
- 
-} */
+
+video {
+
+  height:30%;
+ width:20%;
+}
