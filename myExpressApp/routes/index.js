@@ -27,7 +27,7 @@
   var pic='images/profilePic.jpg'; //holds value of profile image source
   var blocker=true; //boolean to disable direct access to views
   var workoutID;
-  var WorkoutName;
+  var first=true;
 
 
 
@@ -236,7 +236,7 @@ router.post('/logout',(req, res) => {
    posts="";
    bio="";
    pic='images/profilePic.jpg';
-
+   first=true;
 
 res.redirect('/'); //go to login screen
 
@@ -340,29 +340,34 @@ setTimeout(() => {
 
 
 
+
+
+
   router.post('/Exercise', upload.single('video'),(req, res) => {
     var exerciseVideo='images/'+req.file.filename; //video path and name is stored
     var name=req.body.exercise;
     var sets=req.body.sets;
     var reps=req.body.reps;
     var weight=req.body.weight; 
-
     con.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"')";  
+      if(first==true)
+      {
+        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";  
+        first=false;
+      }
+      else {
+      var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";  
+      }
       con.query(sql, function (err, result)
       {
         if (err) throw err;
       });
     })
-
-
 setTimeout(() => {
   res.redirect('/profile');
 }, 2000);
-
-
   });
 
 
@@ -408,14 +413,16 @@ setTimeout(() => {
   {
     var id;
     var date;
-    var name;
+    var wName;
     var image;
-
     if(blocker==true) //we do not want people going directly to profile page without logging in or signing up
     {
       res.redirect('/'); //go to login screen
     }
     else {
+      var workouts;
+      var x=new Array(50);
+      var z;
       con.getConnection(function(err)
       {
         if (err) throw err;
@@ -423,53 +430,46 @@ setTimeout(() => {
         con.query(sql, function (err, result)
         {
           if (err) throw err;
-   
-           date=result[0].Date;
-           name=result[0].Name;
-           id=result[0].ID;
-          
+          workouts=result;
         });
       });
-
-
+      var exercises;
       setTimeout(() => {
         con.getConnection(function(err)
+      {
+        if (err) throw err;
+        var sql = "SELECT* from UserExercises Where First='yes*'"; 
+        con.query(sql, function (err, result)
         {
           if (err) throw err;
-          var sql = "SELECT* from UserExercises Where WorkoutID="+id; 
-          con.query(sql, function (err, result)
-          {
-            if (err) throw err;
-     
-            image=result[0].Pic;
-    
-          });
+          exercises=result;
         });
-      }, 1000);
-
-
-
-
-
-
+      });
+      }, 1000);    
+      setTimeout(() => {  
+      for(i=0;i<workouts.length;i++)
+      {
+        date=workouts[i].Date;
+        wName=workouts[i].Name;
+        id=workouts[i].ID;
+      for(q=0;q<exercises.length;q++)
+      {
+        if(exercises[q].WorkoutID==id)
+        {
+          image=exercises[q].Pic;
+          z={"wName":wName,"date":date,"image":image};
+          x[i]=z;
+        }
+      }
+      }
+    }, 2000);
       setTimeout(() => {
-
-
-        x= {"name":name,"date":date,"image":image};
-        
- 
-          console.log(x.image);
-          res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic,x:x}); //displays profile page with JSON variables
-
-
-
-
-
-      }, 2000);
-
-
-
-
+         x = x.filter(el => {
+          return el != null && el != '';
+        });
+        x.reverse(); 
+        res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic,x:x}); //displays profile page with JSON variables
+     }, 4000);
     }
   });
 
@@ -488,9 +488,7 @@ setTimeout(() => {
   
   router.get('/AddExercise', function(req, res, next)
 {
-
 var exercises=new Array(9);
-  
   con.getConnection(function(err)
   {
     if (err) throw err;
@@ -498,9 +496,7 @@ var exercises=new Array(9);
     con.query(sql, function (err, result)
     {
       if (err) throw err;
-   
       exercises=result;
-
     for(i=0;i<exercises.length;i++)
     {    
     var helper;
@@ -512,25 +508,9 @@ var exercises=new Array(9);
     exercises.sort();
     });
   });
-
-
-    
-    
-
-    
     setTimeout(() => {
       res.render('Exercise',{workoutName:workoutName,exercises:exercises});
     }, 5000);
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
     });
     
 

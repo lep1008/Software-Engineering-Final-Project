@@ -23,13 +23,13 @@ head
   table.profileHeader
     tr
       td
-      
 
-          form(action='/upload/', method='POST' enctype="multipart/form-data" class="profilePicForm")
-            input#image(class='invisible' type="file"  accept="image/* " onchange="previewFile()" name='image')
-            label(for="image" ) 
-              img.profilePic(src=pic class="profilepic" name="profilepic")
-          
+
+        form(action='/upload/', method='POST' enctype="multipart/form-data" class="profilePicForm")
+          input#image(class='invisible' type="file"  accept="image/* " onchange="previewFile()" name='image')
+          label(for="image" ) 
+            img.profilePic(src=pic class="profilepic" name="profilepic")
+
 
       td
         h1.profileName(class="example")=name
@@ -45,7 +45,7 @@ head
             td
               p.followingTitle Following
               p.followingCount=following
-  
+
       tr
         td(class="follow" name="follow")
           button#followBtn.followBtn(onclick="workout()") Follow
@@ -53,15 +53,17 @@ head
 
 
           form(action='/bio/', method='POST',class='submitBio')
-              input#value(type='text', name='value',class='value')
-              textarea#bio(name='bio', class='bio', maxlength="100" disabled)=bio
-              input(type='submit', class="invisible")
-            
+            input#value(type='text', name='value',class='value')
+            textarea#bio(name='bio', class='bio', maxlength="100" disabled)=bio
+            input(type='submit', class="invisible")
+
         td
           input#bioButton(name='bioButton',class='bioButton',type='button', value='Edit Bio', onclick='editBio()')
   .content
-      b=x.name
-      b=x.date
+    for l in x
+      b=l.wName+" - "
+      b=l.date
       br
-      video(src=x.image)
-     
+      video(src=l.image)
+      br
+
