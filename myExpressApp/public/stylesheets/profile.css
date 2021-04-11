@@ -220,3 +220,6 @@ video {
   height:30%;
  width:20%;
 }
+.video {
+    cursor: pointer;
+}

@@ -64,6 +64,9 @@ head
       b=l.wName+" - "
       b=l.date
       br
-      video(src=l.image)
+      form(action='/findWorkout/', method='POST',class='workoutForm')
+        video(src=l.image, id=l.id, onclick="video()", class="video")
+        input#idImage(type='text', class="invisible",name="idImage")
+        input(type='submit', class="invisible")
       br
 

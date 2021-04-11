@@ -21,20 +21,20 @@ head
     button.settingsBtn Settings
     br
 .rightTab
-    form(action='/Exercise/',method='POST', enctype="multipart/form-data")
+    form(action='/Exercise/',method='POST', enctype="multipart/form-data", class="exForm")
         h1=workoutName
         h2 Add an Exercise:
         label Exercise:
         select.exercise(name='exercise',class='exercise', onchange='exerciseName()')
             for l in exercises 
                 option=l
-        
+
         br
         br
         label.weightLabel Weight (lbs)
         label.setsLabel Sets
         label.repsLabel Reps
-    
+
         br
         b(class='exerciseLabel',name='liftLabel') Bench Press
         input.workoutWeight(name='weight' type='number')
@@ -44,12 +44,12 @@ head
         br
         br
         input#video(type="file"  accept="video/* "  name='video')
-     
+
         br
         br
         hr
         br
-        
-    
-       
-        input(type='submit', value="Finish")
+        button(onclick="addAnotherExercise()") Add Another Exercise
+        br
+        input#invisible(type='text', name="button", class="button")
+        input(type='submit', value="Complete Workout")

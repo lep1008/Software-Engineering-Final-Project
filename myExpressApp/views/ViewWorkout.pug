@@ -1,0 +1,32 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Profile Page
+    link(rel='stylesheet' href='stylesheets/post.css')
+    script(type='text/javascript' src='javascripts/links.js')
+    script(type='text/javascript' src='javascripts/workout.js')
+.topBar
+    img.headerLogo(src='images/logoWhite.png')
+    button.postBtn + Post
+    button.logoutBtn Log Out
+.leftTab
+    button.homeBtn Home
+    br
+    button.exploreBtn Explore
+    br
+    button.exploreBtn Profile
+    br
+    button.settingsBtn Settings
+    br
+.rightTab
+    h1=x.Name
+    h2=x.Caption 
+    h3=x.Date
+    b=w.Name+': '
+    b=w.Weight+'lbs '
+    b=w.Sets +'x'
+    b=w.Reps 
+    br
+    video(src=w.Pic width="600", height="400",  controls)
+

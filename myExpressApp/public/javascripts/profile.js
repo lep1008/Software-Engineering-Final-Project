@@ -20,3 +20,14 @@ function editBio()
 
     }
 }
+
+
+function video()
+{
+    var input=document.getElementById('idImage');
+    var form=document.querySelector('.workoutForm');
+    id=event.target.id;
+    input.value=id;
+    form.submit();
+
+}

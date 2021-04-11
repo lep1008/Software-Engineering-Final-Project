@@ -345,7 +345,6 @@ res.redirect('/profile');
       {
       noc.query("Select ID FROM Workout ORDER BY ID DESC LIMIT 1", function (err, result, fields)
       {
-        console.log(result);
         if (err) throw err;
         if (result.length ===0)
         {
@@ -389,6 +388,31 @@ setTimeout(() => {
     var sets=req.body.sets;
     var reps=req.body.reps;
     var weight=req.body.weight; 
+    if(req.body.button=="new")
+    {
+      con.getConnection(function(err)
+      {
+        if (err) throw err;
+        if(first==true)
+        {
+          var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";  
+          first=false;
+        }
+        else {
+        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";  
+        }
+        con.query(sql, function (err, result)
+        {
+          if (err) throw err;
+        });
+      })
+  setTimeout(() => {
+    res.redirect('/AddExercise')
+  }, 2000);
+    }
+    else {
+  
+
     con.getConnection(function(err)
     {
       if (err) throw err;
@@ -406,8 +430,12 @@ setTimeout(() => {
       });
     })
 setTimeout(() => {
+  first=true;
   res.redirect('/profile');
 }, 2000);
+
+
+    }
   });
 
 
@@ -507,7 +535,7 @@ setTimeout(() => {
         if(exercises[q].WorkoutID==id)
         {
           image=exercises[q].Pic;
-          z={"wName":wName,"date":date,"image":image};
+          z={"wName":wName,"date":date,"image":image,"id":id};
           x[i]=z;
         }
       }
@@ -579,3 +607,60 @@ setTimeout(() => {
     
 
 
+
+
+  
+  router.post('/findWorkout', (req, res) => {
+
+
+      workoutID=req.body.idImage;
+
+      res.redirect('/ViewWorkout');
+  });
+
+
+  router.get("/ViewWorkout", (req, res) => 
+  {
+     var x;
+     var w;
+     var con = mysql.createPool
+      ({
+        host: "localhost",
+        user: "root",
+        password: "fitfriends488",
+        database: "FitFriends"
+      });
+      con.getConnection(function(err)
+      {
+        if (err) throw err;
+        var sql = "SELECT* from Workout Where ID="+workoutID; 
+        con.query(sql, function (err, result)
+        {
+          if (err) throw err;
+          x=result[0];
+        });
+        var sql = "SELECT* from Userexercises Where WorkoutID="+workoutID; 
+        con.query(sql, function (err, result)
+        {
+          if (err) throw err;
+          w=result[0];
+        });
+
+
+
+
+      });
+
+      setTimeout(() => {
+        res.render('ViewWorkout',{x:x,w:w})
+      }, 2000);
+
+
+
+
+
+
+
+
+    
+  });

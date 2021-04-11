@@ -7,4 +7,20 @@ function exerciseName()
 
 
 
+function addAnotherExercise()
+{
+    var x=document.querySelector(".button");
+    var form=document.querySelector(".exForm");
+    x.value='new';
+
+
+    form.submit();
+
+
+
+
+}
+
+
+
 
