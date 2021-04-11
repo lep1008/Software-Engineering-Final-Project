@@ -93,16 +93,18 @@ body {
     border: 3px solid white;
     background-color: transparent;
     border-radius: 26px;
-    margin-top: 23px;
-    margin-right: 5%;
+    margin-top: -40px;
+    margin-right: 10%;
     width: 100px;
     height: 40px;
     color: white;
+    font-size: 20px;
 }
 .logoutBtn:hover {
     cursor: pointer;
     background-color: white;
     color: #3FB4E5
+
 }
 .profileHeader {
     margin-left: 7%;
@@ -152,6 +154,7 @@ body {
     font-family: Arial, sans-serif;
 }
 .followBtn {
+    display: block;
     margin-left: 33px;
     border: 3px solid white;
     background-color: #3FB4E5;
@@ -216,10 +219,92 @@ float:left
 }
 
 video {
+    width:300px;
+    height:300px;
+    object-fit:cover;
+    border:1px solid #DDDD;
 
-  height:30%;
- width:20%;
 }
 .video {
     cursor: pointer;
+    display: inline-block;
+}
+
+
+.postBtn {
+    margin-left: 65%;
+    margin-top: 24px;
+    width: 100px; 
+    height: 40px;
+    border: 0px solid black;
+    border-radius: 30px;
+    background-color: white;
+    color: #3FB4E5;
+    font-size: 20px;
+}
+.postBtn:hover {
+    cursor: pointer;
+    background-color: #3FB4E5;
+    color: white;
+    border: 2px solid white;
+}
+
+
+#bioButton {
+    margin-top:15px;
+    display: block;
+    margin-left: 34px;
+    border:0px;
+    background-color:#DDDD;
+    border-radius: 8px;
+    width: 126px;
+    height: 50px;
+    color: darkgrey;
+    font-size: 18px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+
+}
+#bioButton:hover {
+    cursor: pointer;
+    margin-left: 30px;
+    height: 55px;
+    width: 135px;
+
+} 
+
+#line {
+    margin-top:30px;
+    margin-bottom: 30px;;
+    width:1335px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-left:5%;
+   text-align: center;
+   grid-row-gap: 50px;
+    
+}
+
+.grid-content {
+    width:375px;
+    height:375px;
+    margin-left:25px;
+
+}
+
+body {
+    overflow: scroll;
+}
+
+.postLabel {
+    text-align: center; 
+    font-size: large;
+   
+}
+.date {
+    color:darkgrey;
+    text-emphasis: none;
 }

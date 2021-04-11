@@ -15,18 +15,20 @@ head
     br
     button.exploreBtn Explore
     br
-    button.exploreBtn Profile
-    br
-    button.settingsBtn Settings
-    br
+    button.exploreBtn(onclick="profile()") Profile
 .rightTab
     h1=x.Name
     h2=x.Caption 
     h3=x.Date
-    b=w.Name+': '
-    b=w.Weight+'lbs '
-    b=w.Sets +'x'
-    b=w.Reps 
+    b=focus.Name+': '
+    b=focus.Weight+' lbs '
+    b=focus.Sets +'x'
+    b=focus.Reps 
     br
-    video(src=w.Pic width="600", height="400",  controls)
-
+    video(src=focus.Pic width="600", height="400",  controls)
+    br
+    for ex in w 
+      p(onclick="change()", id=ex.Name, class="pointer")=ex.Name
+      form(action='/changeVideo/', method='POST',class='workoutForm')
+        input#invisible(type='text',name="wName",class="wName")
+        input#invisible(type='submit')

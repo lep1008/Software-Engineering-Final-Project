@@ -33,6 +33,10 @@ function workout() {
 }
 
 
+function profile() {
+  location.href="/profile";
+}
+
 
 
 

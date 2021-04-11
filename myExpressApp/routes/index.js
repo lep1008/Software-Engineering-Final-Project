@@ -623,6 +623,7 @@ setTimeout(() => {
   {
      var x;
      var w;
+     var focus;
      var con = mysql.createPool
       ({
         host: "localhost",
@@ -643,7 +644,20 @@ setTimeout(() => {
         con.query(sql, function (err, result)
         {
           if (err) throw err;
-          w=result[0];
+          if(video==null){
+            focus=result[0];
+          }
+          else {
+          for(e=0;e<result.length;e++)
+          {
+            if(result[e].Name==video)
+            {
+              focus=result[e];
+              video=null;
+            }
+          }
+        }
+          w=result;
         });
 
 
@@ -652,7 +666,7 @@ setTimeout(() => {
       });
 
       setTimeout(() => {
-        res.render('ViewWorkout',{x:x,w:w})
+        res.render('ViewWorkout',{x:x,focus:focus,w:w})
       }, 2000);
 
 
@@ -664,3 +678,14 @@ setTimeout(() => {
 
     
   });
+
+
+
+  var video;
+    
+  router.post('/changeVideo', (req, res) => {
+
+   video=req.body.wName;
+   
+    res.redirect('/ViewWorkout');
+});

@@ -8,25 +8,25 @@ head
   script(type='text/javascript' src='javascripts/workout.js')
 .topBar
   img.headerLogo(src='images/logoWhite.png')
-  button.postBtn + Post
-  button.logoutBtn Log Out
+  form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
+    button.logoutBtn(onclick="logout()") Log Out
 .leftTab
   button.homeBtn Home
   br
   button.exploreBtn Explore
   br
-  button.exploreBtn Profile
-  br
-  button.settingsBtn Settings
+  button.exploreBtn(onclick="profile()") Profile
   br
 .rightTab
   form(action='/addWorkout/' method='POST')
-    h1 Add Workout
-    h4 Workout Name:
-    input.workoutName(name='workoutName' type='text')
-    br
-    h4 Caption:
-    input.workoutCaption(name='workoutCaption' type='text')
-    br
-    br
-    input(type='submit', value="Next") 
+    h1(class="title") Add Workout
+    p(class="title") Give your workout a name and caption
+    div(class="box")
+      h4 Workout Name
+      input.workoutName(name='workoutName' type='text')
+      br
+      h4 Caption
+      input.workoutCaption(name='workoutCaption' type='text')
+      br
+      br
+      input#next(type='submit', value="Next") 

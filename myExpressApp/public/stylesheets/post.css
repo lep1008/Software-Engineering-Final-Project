@@ -107,6 +107,7 @@ body {
     border: 2px solid white;
 }
 .logoutBtn {
+    font-size: 20px;
     float: right;
     border: 3px solid white;
     background-color: transparent;
@@ -147,3 +148,55 @@ body {
 #invisible {
     display: none;;
 }
+.pointer {
+    cursor: pointer;;
+}
+.title {
+    text-align: center;
+    margin-top:40px;
+
+}
+.box {
+    background-color:#3FB4E5 ;
+    width:30%;
+    margin:auto;
+    padding-top:30px;
+    padding-bottom: 30px;;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top:60px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.box input[type='text'] {
+    width:200px;
+    height:25px;
+
+    border-radius: 6px;;
+    border: #DDDD;
+
+}
+
+
+#next {
+   margin-top:50px;
+   
+  
+    width: 100px; 
+    height: 40px;
+    border: 0px solid black;
+    border-radius: 30px;
+    background-color: white;
+    color: #3FB4E5;
+    font-size: 20px;
+    margin-bottom:20px;
+
+}
+#next:hover {
+    cursor: pointer;
+    background-color: #3FB4E5;
+    color: white;
+    border: 2px solid white;
+
+} 

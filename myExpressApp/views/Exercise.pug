@@ -9,17 +9,13 @@ head
 
 .topBar
     img.headerLogo(src='images/logoWhite.png')
-    button.postBtn + Post
     button.logoutBtn(onclick="logout()") Log Out
 .leftTab
     button.homeBtn Home
     br
     button.exploreBtn Explore
     br
-    button.exploreBtn Profile
-    br
-    button.settingsBtn Settings
-    br
+    button.exploreBtn(onclick="profile()") Profile
 .rightTab
     form(action='/Exercise/',method='POST', enctype="multipart/form-data", class="exForm")
         h1=workoutName
