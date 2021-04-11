@@ -7,13 +7,7 @@
 
   //Sets up database connection
   const mysql = require('mysql');
-  var con = mysql.createPool
-  ({
-    host: "localhost",
-    user: "root",
-    password: "fitfriends488",
-    database: "FitFriends"
-  });
+
 
 
 //Global Variable Declaration 
@@ -28,6 +22,8 @@
   var blocker=true; //boolean to disable direct access to views
   var workoutID;
   var first=true;
+  
+  
 
 
 
@@ -39,6 +35,13 @@
 //Post Login Method
   router.post('/login',function(req,res,next)
   {
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
     var found=false; //initialize found variable to false
     username=req.body.user;//grabs username from login form
     password=req.body.pass//grabs password from login form
@@ -170,6 +173,13 @@
 //Signs up a new user and stores their credentials in the database
   router.post('/signUp',function(req,res,next)
   {
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
     blocker=false; //signup button was clicked
     pic='images/profilePic.jpg'; //default profile image is provided
     username = req.body.user; //new user's username is stored
@@ -207,6 +217,13 @@ filename: function (req, file, cb) {
 
 //Image is uploaded into filing system and the user's picture name is stored in the database 
 router.post('/upload', upload.single('image'),(req, res) => {
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
   pic='images/'+req.file.filename; //picture path and name is stored
   //Stores the picture name into the database
   con.getConnection(function(err)
@@ -245,7 +262,13 @@ res.redirect('/'); //go to login screen
 
 router.post('/bio',function(req,res,next)
   {
-
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
     bio=req.body.value;
     con.getConnection(function(err)
     {
@@ -273,6 +296,16 @@ res.redirect('/profile');
 //Adds new workout info
   router.post('/addWorkout',function(req,res,next)
   {
+    var noc = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
+
+
+
      workoutName=req.body.workoutName;
     var caption=req.body.workoutCaption;
     var date= new Date();
@@ -297,22 +330,22 @@ res.redirect('/profile');
     }
     
      //Workout info
-    con.getConnection(function(err)
+    noc.getConnection(function(err)
     {
       if (err) throw err;
       var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"',null)"; //query to insert workout  
-      con.query(sql, function (err, result)
+      noc.query(sql, function (err, result)
       {
         if (err) throw err;
       });
     })
 
     setTimeout(() => {
-      con.getConnection(function(err)
+      noc.getConnection(function(err)
       {
-      con.query("SELECT ID FROM Workout WHERE Date = '"+dateString+"' LIMIT 1", function (err, result, fields)
+      noc.query("Select ID FROM Workout ORDER BY ID DESC LIMIT 1", function (err, result, fields)
       {
-     
+        console.log(result);
         if (err) throw err;
         if (result.length ===0)
         {
@@ -333,7 +366,7 @@ res.redirect('/profile');
 
 setTimeout(() => {
   res.redirect('/AddExercise')
-}, 1000);
+}, 3000);
 
   });
 
@@ -344,6 +377,13 @@ setTimeout(() => {
 
 
   router.post('/Exercise', upload.single('video'),(req, res) => {
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
     var exerciseVideo='images/'+req.file.filename; //video path and name is stored
     var name=req.body.exercise;
     var sets=req.body.sets;
@@ -355,7 +395,7 @@ setTimeout(() => {
       if(first==true)
       {
         var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";  
-        first=false;
+        
       }
       else {
       var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";  
@@ -411,6 +451,13 @@ setTimeout(() => {
 ///////////now work on many cases!!!!!!!!
   router.get("/profile", (req, res) => 
   {
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
     var id;
     var date;
     var wName;
@@ -431,6 +478,7 @@ setTimeout(() => {
         {
           if (err) throw err;
           workouts=result;
+     
         });
       });
       var exercises;
@@ -447,11 +495,13 @@ setTimeout(() => {
       });
       }, 1000);    
       setTimeout(() => {  
+       
       for(i=0;i<workouts.length;i++)
       {
         date=workouts[i].Date;
         wName=workouts[i].Name;
         id=workouts[i].ID;
+
       for(q=0;q<exercises.length;q++)
       {
         if(exercises[q].WorkoutID==id)
@@ -468,6 +518,7 @@ setTimeout(() => {
           return el != null && el != '';
         });
         x.reverse(); 
+      
         res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic,x:x}); //displays profile page with JSON variables
      }, 4000);
     }
@@ -484,11 +535,19 @@ setTimeout(() => {
 
 
 
+  
 
   
   router.get('/AddExercise', function(req, res, next)
 {
-var exercises=new Array(9);
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+  var exampleExercises=new Array(9);
   con.getConnection(function(err)
   {
     if (err) throw err;
@@ -496,22 +555,27 @@ var exercises=new Array(9);
     con.query(sql, function (err, result)
     {
       if (err) throw err;
-      exercises=result;
-    for(i=0;i<exercises.length;i++)
+      exampleExercises=result;
+    
+    for(i=0;i<exampleExercises.length;i++)
     {    
     var helper;
-    helper=JSON.stringify(exercises[i]);
+    helper=JSON.stringify(exampleExercises[i]);
     helper=helper.substring(helper.indexOf(":"));
     helper=helper.substring(helper.indexOf("\"")+1,helper.lastIndexOf("\""));
-    exercises[i]=helper;
+    exampleExercises[i]=helper;
     }
-    exercises.sort();
+    exampleExercises.sort();
     });
-  });
+  
+    })
     setTimeout(() => {
-      res.render('Exercise',{workoutName:workoutName,exercises:exercises});
+      res.render('Exercise',{workoutName:workoutName,exercises:exampleExercises});
     }, 5000);
-    });
+  });
+
+
+    
     
 
 
