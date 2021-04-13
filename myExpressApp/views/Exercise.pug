@@ -16,36 +16,37 @@ head
     button.exploreBtn Explore
     br
     button.exploreBtn(onclick="profile()") Profile
-.rightTab
-    form(action='/Exercise/',method='POST', enctype="multipart/form-data", class="exForm")
-        h1=workoutName
-        h2 Add an Exercise:
-        label Exercise:
-        select.exercise(name='exercise',class='exercise', onchange='exerciseName()')
-            for l in exercises 
-                option=l
+.rightTab(class="center")
+    h1()=workoutName
+    p Add an Exercise
+    div(class='box')
+      form(action='/Exercise/',method='POST', enctype="multipart/form-data", class="exForm")
+          div(class='left')
+            label(class='selectLabel') Exercise:
+            select.exercise(name='exercise',class='exercise', onchange='exerciseName()')
+                for l in exercises 
+                    option=l
 
-        br
-        br
-        label.weightLabel Weight (lbs)
-        label.setsLabel Sets
-        label.repsLabel Reps
+            br
+            br
+            label.weightLabel Weight (lbs)
+            label.setsLabel Sets
+            label.repsLabel Reps
 
-        br
-        b(class='exerciseLabel',name='liftLabel') Bench Press
-        input.workoutWeight(name='weight' type='number')
-        input.workoutSets(name='sets' type='number')
-        input.workoutReps(name='reps' type='number')
-        br
-        br
-        br
-        input#video(type="file"  accept="video/* "  name='video')
+            br
+            b(class='exerciseLabel',name='liftLabel') Bench Press
+            input.workoutWeight(name='weight' type='number')
+            input.workoutSets(name='sets' type='number')
+            input.workoutReps(name='reps' type='number')
+            br
+            br
+            br
+            input#video(type="file"  accept="video/* "  name='video' class="file")
 
-        br
-        br
-        hr
-        br
-        button(onclick="addAnotherExercise()") Add Another Exercise
-        br
-        input#invisible(type='text', name="button", class="button")
-        input(type='submit', value="Complete Workout")
+            br
+            br
+            hr
+            br
+          button#add(onclick="addAnotherExercise()") Add Another Exercise
+          input#invisible(type='text', name="button", class="button")
+          input#complete(type='submit', value="Complete Workout")

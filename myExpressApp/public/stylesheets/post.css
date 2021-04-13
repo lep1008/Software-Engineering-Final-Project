@@ -106,6 +106,7 @@ body {
     color: white;
     border: 2px solid white;
 }
+
 .logoutBtn {
     font-size: 20px;
     float: right;
@@ -141,6 +142,7 @@ body {
     display: inline-block;
 }
 .weightLabel {
+    
     padding-left: 15px;
     display: inline-block;
 }
@@ -200,3 +202,169 @@ body {
     border: 2px solid white;
 
 } 
+
+.center {
+    text-align: center;
+}
+.wNameTitle {
+    color:#3FB4E5;
+}
+
+
+#complete {
+    margin-top:50px;
+    
+   
+     width: 200px; 
+     height: 40px;
+     border: 0px solid black;
+     border-radius: 30px;
+     background-color: rgb(94, 245, 162);
+     color: #3FB4E5;
+     font-size: 15px;
+     margin-bottom:20px;
+     
+ 
+ }
+ #complete:hover {
+     cursor: pointer;
+     background-color: rgb(94, 245, 162);
+     color: white;
+     border: 2px solid white;
+ 
+ } 
+
+ #add {
+    margin-top:50px;
+    margin-right:15px;
+   
+     width: 200px; 
+     height: 40px;
+     border: 0px solid black;
+     border-radius: 30px;
+     background-color: white;
+     color: #3FB4E5;
+     font-size: 15px;
+     margin-bottom:20px;
+ 
+ }
+ #add:hover {
+     cursor: pointer;
+     background-color: #3FB4E5;
+     color: white;
+     border: 2px solid white;
+ 
+ } 
+
+
+ .selectLabel {
+    font-weight: bold;
+    margin-right:35px;
+ }
+
+ .left {
+
+    text-align: left;
+ }
+
+ label {
+
+
+    margin-right:15px;
+ }
+ .exerciseLabel {
+     margin-right:15px;
+ }
+
+ .workoutWeight {
+     margin-right:15px;
+ }
+ .workoutSets {
+    margin-right:15px;
+ }
+
+ .workoutReps {
+    margin-right:15px;
+ }
+ .weightLabel {
+    margin-left:80px;
+    margin-right:-110px;
+ }
+
+
+
+
+ .focusVid {
+  text-align: center;
+ }
+
+
+ .info {
+     margin-right:425px;
+     margin-bottom:-40px;
+ }
+ 
+ .dateInfo {
+    margin-left:445px;
+    margin-bottom:-10px;
+}
+
+
+video {
+    width:600px;
+    height:400px;
+    object-fit: cover;
+}
+
+
+.parent {
+
+    display: inline-block;
+    
+}
+
+
+
+.pointer {
+    display: block;
+    
+    border: 3px solid white;
+    background-color: #3FB4E5;
+    border-radius: 8px;
+    width: 130px;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+.pointer:hover {
+    cursor: pointer;
+    
+    height: 55px;
+    width: 135px;
+}
+
+
+
+
+.parent {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  
+   text-align: center;
+   width:600px;
+   grid-column-gap: 15px;
+
+   margin-left:470px;
+    
+}
+
+.grid-content {
+
+    height:200px;
+    width:135px;
+    
+
+}
+ 

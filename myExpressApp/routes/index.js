@@ -475,6 +475,8 @@ setTimeout(() => {
 //Gets Profile Page
 
 
+////////////VERSION 2 CODE UPDATED BELOW
+
 
 ///////////now work on many cases!!!!!!!!
   router.get("/profile", (req, res) => 
@@ -564,7 +566,7 @@ setTimeout(() => {
 
 
   
-
+//ADDS A  new exercise to the database
   
   router.get('/AddExercise', function(req, res, next)
 {
@@ -607,7 +609,7 @@ setTimeout(() => {
     
 
 
-
+//finds the selected workout
 
   
   router.post('/findWorkout', (req, res) => {
@@ -682,7 +684,7 @@ setTimeout(() => {
 
 
   var video;
-    
+    //changes the video to the selected workout
   router.post('/changeVideo', (req, res) => {
 
    video=req.body.wName;

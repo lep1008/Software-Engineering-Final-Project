@@ -89,22 +89,21 @@ body {
     margin-top: 10px;
 }
 .logoutBtn {
+    font-size: 20px;
     float: right;
     border: 3px solid white;
     background-color: transparent;
     border-radius: 26px;
-    margin-top: -40px;
-    margin-right: 10%;
+    margin-top:-38.5px;
+    margin-right: 5%;
     width: 100px;
     height: 40px;
     color: white;
-    font-size: 20px;
 }
 .logoutBtn:hover {
     cursor: pointer;
     background-color: white;
     color: #3FB4E5
-
 }
 .profileHeader {
     margin-left: 7%;
@@ -308,3 +307,16 @@ body {
     color:darkgrey;
     text-emphasis: none;
 }
+
+
+/* .topBar {
+
+    position: sticky;
+    top:0;
+}
+
+.leftTab {
+
+    position: sticky;
+    top:0;
+} */

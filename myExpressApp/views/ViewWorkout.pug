@@ -8,8 +8,8 @@ head
     script(type='text/javascript' src='javascripts/workout.js')
 .topBar
     img.headerLogo(src='images/logoWhite.png')
-    button.postBtn + Post
-    button.logoutBtn Log Out
+    form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
+      button.logoutBtn(onclick="logout()") Log Out
 .leftTab
     button.homeBtn Home
     br
@@ -17,18 +17,18 @@ head
     br
     button.exploreBtn(onclick="profile()") Profile
 .rightTab
-    h1=x.Name
-    h2=x.Caption 
-    h3=x.Date
-    b=focus.Name+': '
-    b=focus.Weight+' lbs '
-    b=focus.Sets +'x'
-    b=focus.Reps 
-    br
-    video(src=focus.Pic width="600", height="400",  controls)
-    br
-    for ex in w 
-      p(onclick="change()", id=ex.Name, class="pointer")=ex.Name
-      form(action='/changeVideo/', method='POST',class='workoutForm')
-        input#invisible(type='text',name="wName",class="wName")
-        input#invisible(type='submit')
+    div(class='focusVid')
+      h1=x.Name
+      p=x.Caption 
+      h3(class="info")=focus.Name+': ' +focus.Weight+' lbs '+focus.Sets +'x'+focus.Reps 
+      h3(class="dateInfo")=x.Date
+      br
+      video(src=focus.Pic width="600", height="400",  controls)
+      br
+      div(class='parent')
+        for ex in w 
+          div(class='grid-content')
+            button(onclick="change()", id=ex.Name, class="pointer")=ex.Name
+            form(action='/changeVideo/', method='POST',class='workoutForm')
+              input#invisible(type='text',name="wName",class="wName")
+              input#invisible(type='submit')
