@@ -31,3 +31,19 @@ function video()
     form.submit();
 
 }
+
+
+
+function remove() 
+{
+    id=event.target.id;
+    id='.ID'+id
+    
+   var form= document.querySelector(id)
+
+
+
+
+form.submit();
+
+}

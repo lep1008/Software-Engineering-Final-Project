@@ -233,7 +233,7 @@ video {
 .postBtn {
     margin-left: 65%;
     margin-top: 24px;
-    width: 100px; 
+    width: 200px; 
     height: 40px;
     border: 0px solid black;
     border-radius: 30px;
@@ -306,17 +306,27 @@ body {
 .date {
     color:darkgrey;
     text-emphasis: none;
+ 
+    position: absolute;
+    margin-left:-150px;
 }
 
 
-/* .topBar {
-
-    position: sticky;
-    top:0;
+.delete {
+    width:25px;
+    height:25px;
+    position: absolute;
+    margin-left:125px;
+  
 }
 
-.leftTab {
 
-    position: sticky;
-    top:0;
-} */
+.delete:hover {
+    content: url('../../images/open_delete.png');
+    cursor: pointer;
+    width:75px;
+    height:42.5px;
+    margin-left:105px;
+  margin-top:-5px;
+ 
+}

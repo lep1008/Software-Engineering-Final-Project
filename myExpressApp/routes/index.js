@@ -478,7 +478,7 @@ setTimeout(() => {
 ////////////VERSION 2 CODE UPDATED BELOW
 
 
-///////////now work on many cases!!!!!!!!
+
   router.get("/profile", (req, res) => 
   {
     var con = mysql.createPool
@@ -690,4 +690,45 @@ setTimeout(() => {
    video=req.body.wName;
    
     res.redirect('/ViewWorkout');
+});
+
+
+router.post('/deleteWorkout', (req, res) => {
+  var x=req.body.id;
+
+  var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
+
+ con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "delete FROM Workout Where ID ="+x; 
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+     exampleExercises=result;
+   
+   });
+   var sql = "delete FROM Userexercises Where WorkoutID ="+x; 
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+     exampleExercises=result;
+   
+   });
+
+
+ 
+   })
+
+   setTimeout(() => {
+    res.redirect('/profile');
+   }, 200);
+ 
+
 });
