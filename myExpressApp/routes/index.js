@@ -254,6 +254,7 @@ router.post('/logout',(req, res) => {
    bio="";
    pic='images/profilePic.jpg';
    first=true;
+   workoutID=null;
 
 res.redirect('/'); //go to login screen
 
@@ -468,6 +469,63 @@ setTimeout(() => {
   });
 
 
+  router.get("/home",(req,res) => {
+    
+    var feed;
+
+
+
+
+    var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
+
+    con.getConnection(function(err)
+    {
+      if (err) throw err;
+      var sql = "SELECT* from workout"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+       
+        feed=result;
+      });
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+      setTimeout(() => {
+          res.render("HOME",{feed:feed});
+          }, 2000);
+
+
+
+
+
+
+
+
+
+
+  });
+
  
 
 
@@ -475,7 +533,6 @@ setTimeout(() => {
 //Gets Profile Page
 
 
-////////////VERSION 2 CODE UPDATED BELOW
 
 
 
@@ -570,6 +627,9 @@ setTimeout(() => {
   
   router.get('/AddExercise', function(req, res, next)
 {
+
+
+  var refresh;
   var con = mysql.createPool
   ({
     host: "localhost",
@@ -597,10 +657,20 @@ setTimeout(() => {
     }
     exampleExercises.sort();
     });
-  
+
+    var sql="SELECT Name FROM userexercises Where workoutID="+workoutID;
+    con.query(sql, function (err, result)
+    {
+
+      refresh=result;
+      
+
+    });
+
+
     })
     setTimeout(() => {
-      res.render('Exercise',{workoutName:workoutName,exercises:exampleExercises});
+      res.render('Exercise',{workoutName:workoutName,exercises:exampleExercises,refresh:refresh});
     }, 5000);
   });
 
@@ -730,5 +800,59 @@ router.post('/deleteWorkout', (req, res) => {
     res.redirect('/profile');
    }, 200);
  
+
+});
+
+
+
+
+router.get("/schedule", (req, res) => 
+{
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+
+
+
+
+  res.render('Schedule');
+
+
+
+  
+});
+
+
+router.post('/addToSchedule',function(req,res,next) 
+{
+
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+  var event=req.body.event;
+  var date=req.body.InputDate;
+  var username='lep1008';
+  con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "INSERT INTO schedule VALUES ('" + username + "','" + event + "','" + date+ "')"; 
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+
+   
+   });
+
+  });
+
+  res.redirect('/schedule');
 
 });

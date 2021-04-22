@@ -368,3 +368,42 @@ video {
 
 }
  
+.rightBox {
+    width:50%;
+    margin-left:60%;
+    margin-top:-375px;
+
+ 
+
+}
+
+.rightBox > b {
+    margin-right:90px;
+    display: block;
+    margin-left:300px;
+    text-align: left;
+    color:#3FB4E5;
+}
+
+.blue {
+    color:#3FB4E5;
+}
+
+.header {
+ 
+    margin-bottom:5px;
+    color:white;
+}
+
+#caption {
+
+}
+
+
+.workoutName {
+    width:300px!important;
+}
+.workoutCaption {
+    width:300px!important;
+
+}

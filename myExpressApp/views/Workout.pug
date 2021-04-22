@@ -2,7 +2,7 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Profile Page
+  title Add Workout
   link(rel='stylesheet' href='stylesheets/post.css')
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/workout.js')
@@ -22,11 +22,12 @@ head
     h1(class="title") Add Workout
     p(class="title") Give your workout a name and caption
     div(class="box")
-      h4 Workout Name
+      h4(class="header") Workout Name
       input.workoutName(name='workoutName' type='text')
       br
-      h4 Caption
+      h4(class="header", id="caption") Caption
       input.workoutCaption(name='workoutCaption' type='text')
       br
       br
       input#next(type='submit', value="Next") 
+

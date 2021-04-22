@@ -32,6 +32,10 @@ function workout() {
 
 }
 
+function home() {
+  location.href="/home";
+}
+
 
 function profile() {
   location.href="/profile";

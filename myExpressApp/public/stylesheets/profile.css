@@ -330,3 +330,182 @@ body {
   margin-top:-5px;
  
 }
+
+
+#caleandar {
+    margin-top: 25px;
+    margin-left:25px;
+
+    transform: scale(1.5);
+    transform-origin: 0% 0% 0px;
+    display: block;
+    
+}
+
+
+.cld-day.today .cld-number {
+    background: #3FB4E5;
+}
+
+
+p {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.date {
+    
+    margin-left:60px;
+    margin-top:-47.5px;
+    margin-bottom:-15px;
+}
+
+
+
+
+
+
+.add {
+    border: 2px solid #3FB4E5;
+    border-radius: 50px;
+    margin-left:170px;
+    margin-top:-60px;
+    margin-bottom:30px;
+    cursor: pointer;
+}
+
+input {
+    z-index: 1000;
+
+
+}
+
+
+.workoutEvent {
+    display: none;
+}
+
+.workoutEventAppear {
+    display: block;
+    margin-bottom: 15px;;
+    width:95%;
+    height:30px;
+    font-size: large;
+    margin-top:-15px;
+}
+
+
+.invisible {
+    display: none;;
+}
+
+
+
+#addEvent {
+    margin-left:25px;
+    display: block;
+  
+    margin-top:10%;
+    margin-right:15%;
+    border: 2px solid #3FB4E5;
+    width:30%;
+
+    padding-left:15px;
+}
+
+
+#none {
+    display: none;
+}
+
+
+p:hover {
+    outline: 1px solid #3FB4E5;
+    
+}
+
+p:active {
+    background-color: #3FB4E5
+}
+
+p:visited {
+    background-color: #3FB4E5
+}
+
+
+
+.nextMonth {
+    visibility: hidden;
+}
+.prevMonth {
+    visibility: hidden;;
+}
+
+p[name="selected"] {
+    outline: 1px solid #3FB4E5;
+}
+
+
+
+
+.submitScheduleEvent {
+ 
+    display: block;
+     width: 100px; 
+     height: 40px;
+     border: 2px solid #3FB4E5;
+     border-radius: 30px;
+     background-color: white;
+     color: #3FB4E5;
+     font-size: 20px;
+   
+    margin-left:75%;
+    margin-top:30px;;
+    margin-bottom: -8.6%;;
+ }
+ .submitScheduleEvent:hover{
+     cursor: pointer;
+     background-color: #3FB4E5;
+     color: white;
+     border: 2px solid white;
+
+ }
+
+
+ .cancel {
+ 
+ 
+display: block;
+
+    width: 100px; 
+    height: 40px;
+    border: 2px solid red;
+    border-radius: 30px;
+    background-color: white;
+    color: red;
+    font-size: 20px;
+    margin-bottom:15px;
+ 
+
+}
+.cancel:hover{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: 2px solid white;
+
+}
+
+
+.red {
+    display: none;
+}
+
+.blue {
+     display: none;
+}

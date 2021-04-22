@@ -47,3 +47,65 @@ function remove()
 form.submit();
 
 }
+
+
+
+
+function date() {
+    var inputDate=document.getElementById('InputDate');
+    inputDate.value=event.target.id;
+    var red=document.querySelector('.cancel');
+    var blue=document.querySelector('.submitScheduleEvent');
+    if(red!=undefined) {
+    red.setAttribute('class','red');
+    blue.setAttribute('class','blue');
+
+    }
+    var found=document.getElementsByName('selected');
+  
+    if(found[0] != undefined)
+    {
+    found[0].setAttribute('name','null');
+    }
+    var current=event.target;
+    
+    current.setAttribute('name','selected');
+    var y=document.getElementById('none');
+
+    if(y!=null)
+    {
+    y.setAttribute('id','addEvent');
+    }
+    var date=event.target.id;
+    var x=document.querySelector('.date');
+    x.innerHTML=date;
+
+    var input=document.getElementById('field')
+
+    input.setAttribute('class','workoutEvent');
+}
+
+
+
+function add() {
+    var x=document.getElementById('field');
+
+    x.setAttribute('class','workoutEventAppear');
+
+
+    var red=document.querySelector('.red');
+    var blue=document.querySelector('.blue');
+
+    red.setAttribute('class','cancel');
+    blue.setAttribute('class','submitScheduleEvent');
+}
+
+
+function cancel() {
+  
+        var x=document.getElementsByName('selected');
+        x[0].click();
+
+ 
+}
+
