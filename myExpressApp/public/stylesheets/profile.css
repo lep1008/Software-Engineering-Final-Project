@@ -303,7 +303,7 @@ body {
     font-size: large;
    
 }
-.date {
+.postdate {
     color:darkgrey;
     text-emphasis: none;
  
@@ -358,10 +358,10 @@ p {
 
 
 
-.date {
+.postdate {
     
-    margin-left:60px;
-    margin-top:-47.5px;
+ 
+ 
     margin-bottom:-15px;
 }
 
@@ -373,7 +373,7 @@ p {
 .add {
     border: 2px solid #3FB4E5;
     border-radius: 50px;
-    margin-left:170px;
+    margin-left:125px;
     margin-top:-60px;
     margin-bottom:30px;
     cursor: pointer;
@@ -407,13 +407,14 @@ input {
 
 
 #addEvent {
+    position: fixed;
     margin-left:25px;
     display: block;
   
-    margin-top:10%;
+    margin-top:5%;
     margin-right:15%;
     border: 2px solid #3FB4E5;
-    width:30%;
+    width:25%;
 
     padding-left:15px;
 }
@@ -508,4 +509,74 @@ display: block;
 
 .blue {
      display: none;
+}
+
+
+#caleandar {
+    width:45%;
+}
+
+.events
+{
+    margin-left:550px;
+    margin-top:-325px;
+
+    border:#3FB4E5 2px solid;
+    width:25%;
+
+    height:40%;
+    padding-left: 15px;;
+    font-size: large;
+}
+
+
+#invisibleEvent {
+    display: none;
+}
+
+.date {
+    margin-top:-15x;
+}
+
+.searchDiv {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.searchHeader {
+    font-size: 48px;
+}
+
+.searchParagraph {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.searchInput {
+    margin-top: 30px;
+    background-color: #f2f2f2;
+    border: 2px solid lightgrey;
+    border-radius: 6px;
+    width: 35%;
+    height: 40px;
+    font-size: large;
+}
+
+.searchBtn {
+    margin-top:15px;
+    margin-left:45%;
+    border: 3px solid white;
+    background-color: #3FB4E5;
+    border-radius: 30px;
+    width: 125px;
+    height: 50px;
+    color: white;
+    font-size: large;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    
+
+}
+.searchBtn:hover {
+    cursor: pointer;
 }

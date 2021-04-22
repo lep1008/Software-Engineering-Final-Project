@@ -14,7 +14,7 @@ head
 .leftTab
   button.homeBtn(onclick="home()") Home
   br
-  button.exploreBtn Explore
+  button.exploreBtn(onclick="explore()") Explore
   br
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
@@ -46,7 +46,7 @@ head
 
       tr
         td(class="follow" name="follow")
-          button#followBtn.followBtn() Schedule
+          button#followBtn.followBtn(onclick="schedule()") Schedule
           input#bioButton(name='bioButton',class='bioButton',type='button', value='Edit Bio', onclick='editBio()')
         td(class="bioData",name="bioData")
 
@@ -70,7 +70,7 @@ head
           br
           input#idImage(type='text', class="invisible",name="idImage")
           input(type='submit', class="invisible")
-          b(class="date")=l.date
+          b(class="postdate")=l.date
           img(src='images/delete.png',  class="delete", onclick="remove()",id=l.id)
         form(action='/deleteWorkout/',method='POST',class="ID"+l.id)
           input(type='text', class="invisible", name='id',value=l.id)

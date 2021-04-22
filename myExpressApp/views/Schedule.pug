@@ -8,8 +8,7 @@ head
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/profile.js')
 .topBar
-  img.headerLogo(src='images/logoWhite.png')
-  button.postBtn(onclick="workout()") + Add Workout
+  img.headerLogo(src='images/logoWhite.png' )
   form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
     button.logoutBtn(onclick="logout()") Log Out
 .leftTab
@@ -23,8 +22,12 @@ head
   #caleandar
   script(type='text/javascript' src='javascripts/caleandar.js')
   script(type='text/javascript' src='javascripts/demo.js')
+  div(class="events") 
+    h2 Events 
+    for x in dates
+        p(class="Date"+x.Date, id="invisibleEvent", name="EventParagraph")=x.Name
+        
   #none
-    h2 Date:
     h2(class="date")
     img(src="images/add.svg" width="27",height="27", class="add", onclick='add()')
     form(action='/addToSchedule/',method='POST',class="eventForm")

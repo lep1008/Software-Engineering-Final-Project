@@ -413,7 +413,6 @@ setTimeout(() => {
     }
     else {
   
-
     con.getConnection(function(err)
     {
       if (err) throw err;
@@ -565,6 +564,7 @@ setTimeout(() => {
         {
           if (err) throw err;
           workouts=result;
+          posts=result.length;
      
         });
       });
@@ -808,6 +808,7 @@ router.post('/deleteWorkout', (req, res) => {
 
 router.get("/schedule", (req, res) => 
 {
+  var dates;
   var con = mysql.createPool
   ({
     host: "localhost",
@@ -816,10 +817,23 @@ router.get("/schedule", (req, res) =>
     database: "FitFriends"
   });
 
+  con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "Select* from Schedule Where User='"+username+"'" ;
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+      dates=result;
+   
+   });
 
+  });
 
+setTimeout(() => {
+  res.render('Schedule',{dates,dates});
+}, 1000);
 
-  res.render('Schedule');
 
 
 
@@ -839,7 +853,7 @@ router.post('/addToSchedule',function(req,res,next)
   });
   var event=req.body.event;
   var date=req.body.InputDate;
-  var username='lep1008';
+
   con.getConnection(function(err)
  {
    if (err) throw err;
@@ -853,6 +867,18 @@ router.post('/addToSchedule',function(req,res,next)
 
   });
 
-  res.redirect('/schedule');
+  setTimeout(() => {
+    res.redirect('/schedule');
+  }, 1000);
+
+
+});
+
+
+
+
+router.get('/explore', function(req, res, next)
+{
+  res.render('Explore');
 
 });

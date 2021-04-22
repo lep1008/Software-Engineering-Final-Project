@@ -52,6 +52,17 @@ form.submit();
 
 
 function date() {
+
+
+   var getAllInvisibleEvents= document.querySelectorAll("[class^=Date]")
+ 
+    if(getAllInvisibleEvents.length>0)
+    {
+        for(q=0;q<getAllInvisibleEvents.length;q++)
+        {
+            getAllInvisibleEvents[q].style.display="none";
+        }
+    }
     var inputDate=document.getElementById('InputDate');
     inputDate.value=event.target.id;
     var red=document.querySelector('.cancel');
@@ -83,6 +94,18 @@ function date() {
     var input=document.getElementById('field')
 
     input.setAttribute('class','workoutEvent');
+
+
+    var eventList=document.querySelectorAll('.Date'+date);
+
+
+if(eventList.length>0) {
+    for(z=0;z<eventList.length;z++) {
+        eventList[z].style.display="block";
+}
+}
+
+
 }
 
 
@@ -108,4 +131,10 @@ function cancel() {
 
  
 }
+
+
+
+
+
+
 

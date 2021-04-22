@@ -16,6 +16,10 @@ function index()
     location.href='/';
 }
 
+function explore() {
+  location.href='/explore';
+
+}
 
 
 //Calls the logout post method using the logout form's submit
@@ -43,7 +47,9 @@ function profile() {
 
 
 
-
+function schedule() {
+  location.href="/schedule";
+}
 
 
 
