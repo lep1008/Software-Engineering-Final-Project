@@ -1,0 +1,81 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Profile Page
+  link(rel='icon' href='images/logoWhite.png')
+  link(rel='stylesheet' href='stylesheets/profile.css')
+  script(type='text/javascript' src='javascripts/links.js')
+  script(type='text/javascript' src='javascripts/profile.js')
+.topBar
+  img.headerLogo(src='images/logoWhite.png')
+  button.postBtn(onclick="workout()") + Add Workout
+  form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
+    button.logoutBtn(onclick="logout()") Log Out
+.leftTab
+  button.homeBtn(onclick="home()") Home
+  br
+  button.exploreBtn(onclick="explore()") Explore
+  br
+  button.exploreBtn(onclick="profile()") Profile
+.rightTab
+  table.profileHeader
+    tr
+      td
+
+
+        form(action='/upload/', method='POST' enctype="multipart/form-data" class="profilePicForm")
+          input#image(class='invisible' type="file"  accept="image/* " onchange="previewFile()" name='image')
+          label(for="image" ) 
+            img.profilePic(src=pic class="profilepic" name="profilepic")
+
+
+      td
+        h1.profileName(class="example")=name
+        p.profileUsername=user
+        table.followTable
+          tr
+            td
+              p.postTitle Posts
+              p.postCount=posts
+            td
+              p.followerTitle Followers
+              p.followerCount=followers
+            td
+              p.followingTitle Following
+              p.followingCount=following
+
+      tr
+        td(class="follow" name="follow")
+          button#followBtn.followBtn(onclick="schedule()") Schedule
+          input#bioButton(name='bioButton',class='bioButton',type='button', value='Edit Bio', onclick='editBio()')
+        td(class="bioData",name="bioData")
+
+
+          form(action='/bio/', method='POST',class='submitBio')
+            input#value(type='text', name='value',class='value')
+            textarea#bio(name='bio', class='bio', maxlength="100" disabled)=bio
+            input(type='submit', class="invisible")
+        
+       
+  hr#line      
+  .content
+    for l in x
+      div(class="grid-content")
+        div(class="postLabel")
+          b=l.wName
+        
+        
+        form(action='/findWorkout/', method='POST',class='workoutForm')
+          video(src=l.image, id=l.id, onclick="video()", class="video")
+          br
+          input#idImage(type='text', class="invisible",name="idImage")
+          input(type='submit', class="invisible")
+          b(class="postdate")=l.date
+          img(src='images/delete.png',  class="delete", onclick="remove()",id=l.id)
+        form(action='/deleteWorkout/',method='POST',class="ID"+l.id)
+          input(type='text', class="invisible", name='id',value=l.id)
+          input(type='submit', class='invisible')
+          
+      
+

@@ -1,0 +1,41 @@
+.foundUser > p {
+
+    text-align: right;
+    float: right;
+
+    font-size: larger;
+
+    font-weight: bold;
+    font-size: 35px;;
+}
+
+.foundUser {
+    margin-left: 28%;
+    margin-top: 30px;
+    width: 610px;
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.foundUser:hover {
+    margin-left: 28%;
+    margin-top: 30px;
+    width: 610px;
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #3FB4E5;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+#searchImg {
+    border-radius: 60%;
+    float: left;
+    border: 2px solid white;
+}

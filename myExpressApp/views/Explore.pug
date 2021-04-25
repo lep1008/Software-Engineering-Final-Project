@@ -4,6 +4,7 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Home Feed
   link(rel='stylesheet' href='stylesheets/profile.css')
+  link(rel='stylesheet' href='stylesheets/explore.css')
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/profile.js')
 .topBar
@@ -18,10 +19,15 @@ head
   br
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
-    .searchDiv
-      form(action="/search/" method="POST", class="searchForm")
-        h2(class = "searchHeader") Find FitFriends Users
-        p(class = "searchParagraph") Enter the username below
-        input(type="text" class = "searchInput", name="searchInput")
-        input.searchBtn(type="submit", value="Search") 
+  .searchDiv
+    form(action="/search/" method="POST", class="searchForm")
+      h2(class = "searchHeader") Find FitFriends Users
+      p(class = "searchParagraph") Enter the username below
+      input(type="text" class = "searchInput", name="searchInput", value=search)
+      input.searchBtn(type="submit", value="Search") 
+  .Users 
+    for x in userList 
+      .foundUser(onclick="")
+        img#searchImg(src=x.Pic, width="100", height="100")
+        p=x.Username
 

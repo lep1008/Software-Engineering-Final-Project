@@ -21,6 +21,10 @@ function explore() {
 
 }
 
+function viewProfile() {
+  location.href='/viewProfile';
+}
+
 
 //Calls the logout post method using the logout form's submit
 function logout() {

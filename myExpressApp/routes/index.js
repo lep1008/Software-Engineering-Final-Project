@@ -877,12 +877,38 @@ router.post('/addToSchedule',function(req,res,next)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var search="";
+
+
+
 router.get('/explore', function(req, res, next)
 {
 
   
 var userList;
 
+var empty;
 var con = mysql.createPool
 ({
   host: "localhost",
@@ -891,17 +917,24 @@ var con = mysql.createPool
   database: "FitFriends"
 });
 
-
 con.getConnection(function(err)
 {
  
  if (err) throw err;
- var sql = "select username from user where username Like '%"+search+"%'";
+ var sql = "select* from user where username Like '%"+search+"%'";
  con.query(sql, function (err, result)
  {
    if (err) throw err;
 
   userList=result;
+ });
+
+ var sql = "select* from user where Name ='1'";
+ con.query(sql, function (err, result)
+ {
+   if (err) throw err;
+
+  empty=result;
  });
 
 });
@@ -911,17 +944,18 @@ setTimeout(() => {
 
 
 
+  if(search=="" || search==undefined) {
+  
+    res.render('Explore',{userList:empty,search:search});
 
-  res.render('Explore',{userList:userList});
+  }
+  else {
+  
+    res.render('Explore',{userList:userList,search:search});
+  }
+
 
 }, 1000);
-
-
-
-
-
-
-
 
 
 
@@ -931,12 +965,54 @@ setTimeout(() => {
 
 
 
-var search="";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.post('/search', (req, res) => {
 
 
 
  search=req.body.searchInput;
+
+
+ res.redirect('/explore');
+
+});
+
+
+router.get("/viewProfile", (req, res) => 
+{
+
+
+
+
+
+
 
 
 
