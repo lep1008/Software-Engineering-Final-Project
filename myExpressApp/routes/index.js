@@ -879,6 +879,65 @@ router.post('/addToSchedule',function(req,res,next)
 
 router.get('/explore', function(req, res, next)
 {
-  res.render('Explore');
+
+  
+var userList;
+
+var con = mysql.createPool
+({
+  host: "localhost",
+  user: "root",
+  password: "fitfriends488",
+  database: "FitFriends"
+});
+
+
+con.getConnection(function(err)
+{
+ 
+ if (err) throw err;
+ var sql = "select username from user where username Like '%"+search+"%'";
+ con.query(sql, function (err, result)
+ {
+   if (err) throw err;
+
+  userList=result;
+ });
+
+});
+
+setTimeout(() => {
+ 
+
+
+
+
+  res.render('Explore',{userList:userList});
+
+}, 1000);
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+var search="";
+router.post('/search', (req, res) => {
+
+
+
+ search=req.body.searchInput;
+
+
 
 });
