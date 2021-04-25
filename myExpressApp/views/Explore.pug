@@ -19,8 +19,9 @@ head
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
     .searchDiv
+      form(action="/search/" method="POST", class="searchForm")
         h2(class = "searchHeader") Find FitFriends Users
         p(class = "searchParagraph") Enter the username below
-        input(type="text" class = "searchInput")
-    button.searchBtn Search
+        input(type="text" class = "searchInput", name="searchInput")
+        input.searchBtn(type="submit", value="Search") 
 
