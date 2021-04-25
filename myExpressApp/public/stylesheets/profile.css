@@ -580,3 +580,10 @@ display: block;
 .searchBtn:hover {
     cursor: pointer;
 }
+
+.ghost {
+    visibility: hidden;
+}
+.vUsername {
+    margin-left:15%;
+}

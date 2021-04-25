@@ -57,6 +57,14 @@ function schedule() {
 
 
 
+
+function viewerSchedule() {
+  location.href="/viewerSchedule";
+}
+
+
+
+
 //referenced: https://gist.github.com/zulhfreelancer/1a1b68062da349d6268f0aaa43991b99 
 //Useful trick to display an image that a user uploads on the screen 
 function previewFile() {
@@ -75,3 +83,16 @@ function previewFile() {
 
 
 
+
+
+  function viewUserProfile() {
+
+    username=event.target.id;
+
+
+    username='.'+username;
+
+
+    var form = document.querySelector(username);
+      form.submit();
+  }

@@ -26,8 +26,12 @@ head
       input(type="text" class = "searchInput", name="searchInput", value=search)
       input.searchBtn(type="submit", value="Search") 
   .Users 
-    for x in userList 
-      .foundUser(onclick="")
-        img#searchImg(src=x.Pic, width="100", height="100")
-        p=x.Username
+    
+      for x in userList 
+        form(action="/viewProfilePost",method="POST", class=x.Username)
+          input(type="submit", class="invisible")
+          input(type="text",name="field", class="invisible", value=x.Username)
+          .foundUser(onclick="viewUserProfile()", id=x.Username)
+            img.searchImg(src=x.Pic, width="100", height="100", id=x.Username)
+            p=x.Username
 

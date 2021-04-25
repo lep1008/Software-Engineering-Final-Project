@@ -888,6 +888,41 @@ router.post('/addToSchedule',function(req,res,next)
 
 
 
+router.get("/viewerSchedule", (req, res) => 
+{
+  var dates;
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+
+  con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "Select* from Schedule Where User='"+viewerProfile+"'" ;
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+      dates=result;
+   
+   });
+
+  });
+
+setTimeout(() => {
+  res.render('viewSchedule',{dates,dates,user:viewerProfile});
+}, 1000);
+
+
+
+
+  
+});
+
+
 
 
 
@@ -1005,9 +1040,104 @@ router.post('/search', (req, res) => {
 });
 
 
+
+
+
+
+var viewerProfile;
+
+
+router.post('/viewProfilePost', (req, res) => {
+
+  viewerProfile=req.body.field;
+  res.redirect('/viewProfile');
+ 
+ });
+
+
+
 router.get("/viewProfile", (req, res) => 
 {
+  var viewerCredentials;
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+  var id;
+  var date;
+  var wName;
+  var image;
 
+    var workouts;
+    var x=new Array(50);
+    var z;
+    con.getConnection(function(err)
+    {
+      var sql = "SELECT* from User WHERE Username='"+viewerProfile+"'"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+        viewerCredentials=result;
+      
+   
+      });
+
+
+
+
+      if (err) throw err;
+      var sql = "SELECT* from Workout WHERE User='"+viewerProfile+"'"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+        workouts=result;
+        posts=result.length;
+   
+      });
+    });
+    var exercises;
+    setTimeout(() => {
+      con.getConnection(function(err)
+    {
+      if (err) throw err;
+      var sql = "SELECT* from UserExercises Where First='yes*'"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+        exercises=result;
+      });
+    });
+    }, 1000);    
+    setTimeout(() => {  
+     
+    for(i=0;i<workouts.length;i++)
+    {
+      date=workouts[i].Date;
+      wName=workouts[i].Name;
+      id=workouts[i].ID;
+
+    for(q=0;q<exercises.length;q++)
+    {
+      if(exercises[q].WorkoutID==id)
+      {
+        image=exercises[q].Pic;
+        z={"wName":wName,"date":date,"image":image,"id":id};
+        x[i]=z;
+      }
+    }
+    }
+  }, 2000);
+    setTimeout(() => {
+       x = x.filter(el => {
+        return el != null && el != '';
+      });
+      x.reverse(); 
+      res.render('viewProfile', {viewerCredentials:viewerCredentials[0],x:x}); //displays profile page with JSON variables
+   }, 4000);
+  
 
 
 
