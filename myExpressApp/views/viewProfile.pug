@@ -24,10 +24,10 @@ head
       td
 
 
-     
-      
-        
-            img.profilePic(src=viewerCredentials.Pic class="profilepic" name="profilepic")
+
+
+
+        img.profilePic(src=viewerCredentials.Pic class="profilepic" name="profilepic")
 
 
       td
@@ -51,27 +51,27 @@ head
         td(class="bioData",name="bioData")
 
 
-           
-            textarea#bio(name='bio', class='bio', maxlength="100" disabled)=viewerCredentials.Bio
-           
-        
-       
+
+          textarea#bio(name='bio', class='bio', maxlength="100" disabled)=viewerCredentials.Bio
+
+
+
   hr#line      
   .content
     for l in x
       div(class="grid-content")
         div(class="postLabel")
           b=l.wName
-        
-        
+
+
         form(action='/findWorkout/', method='POST',class='workoutForm')
           video(src=l.image, id=l.id, onclick="video()", class="video")
           br
           input#idImage(type='text', class="invisible",name="idImage")
           input(type='submit', class="invisible")
           b(class="postdate")=l.date
-       
 
-          
-      
+
+
+
 

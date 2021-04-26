@@ -7,15 +7,17 @@ head
   link(rel='stylesheet' href='stylesheets/explore.css')
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/profile.js')
+  link(rel='icon' href='images/logoWhite.png')
+
 .topBar
   img.headerLogo(src='images/logoWhite.png')
   button.postBtn(onclick="workout()") + Add Workout
   form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
     button.logoutBtn(onclick="logout()") Log Out
 .leftTab
-  button.homeBtn Home
+  button.homeBtn(onclick="home()") Home
   br
-  button.exploreBtn Explore
+  button.exploreBtn(onclick="explore()") Explore
   br
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
@@ -26,12 +28,12 @@ head
       input(type="text" class = "searchInput", name="searchInput", value=search)
       input.searchBtn(type="submit", value="Search") 
   .Users 
-    
-      for x in userList 
-        form(action="/viewProfilePost",method="POST", class=x.Username)
-          input(type="submit", class="invisible")
-          input(type="text",name="field", class="invisible", value=x.Username)
-          .foundUser(onclick="viewUserProfile()", id=x.Username)
-            img.searchImg(src=x.Pic, width="100", height="100", id=x.Username)
-            p=x.Username
+
+    for x in userList 
+      form(action="/viewProfilePost",method="POST", class=x.Username)
+        input(type="submit", class="invisible")
+        input(type="text",name="field", class="invisible", value=x.Username)
+        .foundUser(onclick="viewUserProfile()", id=x.Username)
+          img.searchImg(src=x.Pic, width="100", height="100", id=x.Username)
+          p=x.Username
 

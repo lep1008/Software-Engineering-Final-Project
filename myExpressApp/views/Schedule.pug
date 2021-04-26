@@ -7,15 +7,17 @@ head
   link(rel='stylesheet' href='stylesheets/profile.css')
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/profile.js')
+  link(rel='icon' href='images/logoWhite.png')
+
 .topBar
   img.headerLogo(src='images/logoWhite.png' )
   button.postBtn(onclick="workout()", class="ghost") + Add Workout
   form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
     button.logoutBtn(onclick="logout()") Log Out
 .leftTab
-  button.homeBtn Home
+  button.homeBtn(onclick="home()") Home
   br
-  button.exploreBtn Explore
+  button.exploreBtn(onclick="explore()") Explore
   br
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
@@ -26,8 +28,8 @@ head
   div(class="events") 
     h2 Events 
     for x in dates
-        p(class="Date"+x.Date, id="invisibleEvent", name="EventParagraph")=x.Name
-        
+      p(class="Date"+x.Date, id="invisibleEvent", name="EventParagraph")=x.Name
+
   #none
     h2(class="date")
     img(src="images/add.svg" width="27",height="27", class="add", onclick='add()')

@@ -6,14 +6,16 @@ head
     link(rel='stylesheet' href='stylesheets/post.css')
     script(type='text/javascript' src='javascripts/links.js')
     script(type='text/javascript' src='javascripts/workout.js')
+    link(rel='icon' href='images/logoWhite.png')
+
 
 .topBar
     img.headerLogo(src='images/logoWhite.png')
     button.logoutBtn(onclick="logout()") Log Out
 .leftTab
-    button.homeBtn Home
+    button.homeBtn(onclick="home()") Home
     br
-    button.exploreBtn Explore
+    button.exploreBtn(onclick="explore()") Explore
     br
     button.exploreBtn(onclick="profile()") Profile
 .rightTab(class="center")
@@ -51,7 +53,7 @@ head
             input#invisible(type='text', name="button", class="button")
             input#complete(type='submit', value="Complete Workout")
     div(class="rightBox")
-      h2(class="blue") Exercises Added: 
-      for y in refresh 
-        b=y.Name
+        h2(class="blue") Exercises Added: 
+        for y in refresh 
+            b=y.Name
 

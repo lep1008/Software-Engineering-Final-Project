@@ -1,34 +1,36 @@
 doctype html
 head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Profile Page
-    link(rel='stylesheet' href='stylesheets/post.css')
-    script(type='text/javascript' src='javascripts/links.js')
-    script(type='text/javascript' src='javascripts/workout.js')
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Profile Page
+  link(rel='stylesheet' href='stylesheets/post.css')
+  script(type='text/javascript' src='javascripts/links.js')
+  script(type='text/javascript' src='javascripts/workout.js')
+  link(rel='icon' href='images/logoWhite.png')
+
 .topBar
-    img.headerLogo(src='images/logoWhite.png')
-    form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
-      button.logoutBtn(onclick="logout()") Log Out
+  img.headerLogo(src='images/logoWhite.png')
+  form(action='/logout/', method='POST' enctype="multipart/form-data" class="logoutForm")
+    button.logoutBtn(onclick="logout()") Log Out
 .leftTab
-    button.homeBtn Home
-    br
-    button.exploreBtn Explore
-    br
-    button.exploreBtn(onclick="profile()") Profile
+  button.homeBtn(onclick="home()") Home
+  br
+  button.exploreBtn(onclick="explore()") Explore
+  br
+  button.exploreBtn(onclick="profile()") Profile
 .rightTab
-    div(class='focusVid')
-      h1=x.Name
-      p=x.Caption 
-      h3(class="info")=focus.Name+': ' +focus.Weight+' lbs '+focus.Sets +'x'+focus.Reps 
-      h3(class="dateInfo")=x.Date
-      br
-      video(src=focus.Pic width="600", height="400",  controls)
-      br
-      div(class='parent')
-        for ex in w 
-          div(class='grid-content')
-            button(onclick="change()", id=ex.Name, class="pointer")=ex.Name
-            form(action='/changeVideo/', method='POST',class='workoutForm')
-              input#invisible(type='text',name="wName",class="wName")
-              input#invisible(type='submit')
+  div(class='focusVid')
+    h1=x.Name
+    p=x.Caption 
+    h3(class="info")=focus.Name+': ' +focus.Weight+' lbs '+focus.Sets +'x'+focus.Reps 
+    h3(class="dateInfo")=x.Date
+    br
+    video(src=focus.Pic width="600", height="400",  controls)
+    br
+    div(class='parent')
+      for ex in w 
+        div(class='grid-content')
+          button(onclick="change()", id=ex.Name, class="pointer")=ex.Name
+          form(action='/changeVideo/', method='POST',class='workoutForm')
+            input#invisible(type='text',name="wName",class="wName")
+            input#invisible(type='submit')

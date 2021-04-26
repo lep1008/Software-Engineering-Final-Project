@@ -56,16 +56,16 @@ head
             input#value(type='text', name='value',class='value')
             textarea#bio(name='bio', class='bio', maxlength="100" disabled)=bio
             input(type='submit', class="invisible")
-        
-       
+
+
   hr#line      
   .content
     for l in x
       div(class="grid-content")
         div(class="postLabel")
           b=l.wName
-        
-        
+
+
         form(action='/findWorkout/', method='POST',class='workoutForm')
           video(src=l.image, id=l.id, onclick="video()", class="video")
           br
@@ -76,6 +76,6 @@ head
         form(action='/deleteWorkout/',method='POST',class="ID"+l.id)
           input(type='text', class="invisible", name='id',value=l.id)
           input(type='submit', class='invisible')
-          
-      
+
+
 
