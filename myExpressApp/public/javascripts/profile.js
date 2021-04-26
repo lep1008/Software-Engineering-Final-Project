@@ -137,4 +137,18 @@ function cancel() {
 
 
 
+function feedViewWorkout() {
+
+
+
+
+
+    id=event.target.id;
+
+    id='.form'+id;
+    var form=document.querySelector(id);
+
+    form.submit();
+}
+
 

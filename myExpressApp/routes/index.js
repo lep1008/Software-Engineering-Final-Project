@@ -472,8 +472,8 @@ setTimeout(() => {
     
     var feed;
 
-
-
+    var users;
+    var pics;
 
     var con = mysql.createPool
     ({
@@ -494,11 +494,22 @@ setTimeout(() => {
         feed=result;
       });
 
+      var sql = "SELECT* from user"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+       
+        users=result;
+      });
 
 
-
-
-
+      var sql = "SELECT* from userexercises where first='yes*'"; 
+      con.query(sql, function (err, result)
+      {
+        if (err) throw err;
+        pics=result;
+      });
+      
     });
 
 
@@ -511,6 +522,27 @@ setTimeout(() => {
 
 
       setTimeout(() => {
+
+        for(i=0;i<feed.length;i++)
+        {
+          feed[i].pic=pics[i].Pic;
+          var profilePic;
+          for(z=0;z<users.length;z++)
+          {
+            if(feed[i].User==users[z].Username){
+              profilePic=users[z].Pic;
+            }
+          }
+
+          feed[i].profilePic=profilePic;
+
+        }
+
+
+        feed.reverse();
+
+
+
           res.render("HOME",{feed:feed});
           }, 2000);
 

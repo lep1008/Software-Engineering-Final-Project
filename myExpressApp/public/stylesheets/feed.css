@@ -1,96 +1,38 @@
-body {
-    background-color:#fafafa;
- 
-    background-repeat: no-repeat;
-    background-size:100%;
+.postDiv {
+    height: 100%;
+    width: 100%;
+    margin-left: 40px;
 }
-
-h1 {
-    text-align: center;
-    background-color:#1d8ee4;
-
-}
-div {
-    text-align: left;
-    margin-top:15px;
-    background-position-x: center;
-    margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  height: 82.5%;;
-
-}
-.form {
-    background-color: white !important;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-  
-    border-style: solid;
-    border-color:#e1e2e3;
-    border-width: thin;
-
-}
-input {
-    display: block;
-margin-left: auto;
-margin-right:auto;;
-margin-top:15px;
-    width: 500px;
-    height: 50px;;
-    font-size: large;
-    border-color:#e1e2e3;;
+.topPost {
+    margin-top: 30px;
+    width: 600px;
+    height: 175px;
     
 }
+#homeName {
+    display: block;
+    font-size: 22px;
+    margin-top: 75px;
 
-img {
-    display: block;
-    float:left;
-    margin-left:5%;
-    
-    height:90px;
-    width: 5%;;
-   
 }
-a {
+
+#homeUsername {
     display: block;
-    text-align: center;
-    font-size: medium;
-    margin-top:15px;
+    font-size: 30px;
+    margin-left: 125px;
+    margin-top: -75px;
+}
+
+.homeVideo {
+    display: block;
+    width: 600px;
+    height: 600px;
     cursor: pointer;
-    text-decoration: underline;
-    color: #1d8ee4;
 }
 
-button  {
-display: block;
-background-color:  #1d8ee4;
-border:none;
-border-radius: 12px;;
-  margin-top:30px;
-  width:50%;
-  height: 50px;
-  font-size: x-large;
-  margin-left: 15px;;
-  margin-left: auto;
-  margin-right: auto;
-  text-emphasis-color: white;
-  cursor: pointer;
-  color:white;
+#homePic {
+    border-radius: 60%;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
 }
-
-
-button:hover {
-
-color:black;
-
-
-
-}
-
-a:hover {
-    color:black;
-}
-
-

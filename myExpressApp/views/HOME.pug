@@ -4,6 +4,7 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Home Feed
   link(rel='stylesheet' href='stylesheets/profile.css')
+  link(rel='stylesheet' href='stylesheets/feed.css')
   script(type='text/javascript' src='javascripts/links.js')
   script(type='text/javascript' src='javascripts/profile.js')
 .topBar
@@ -19,7 +20,15 @@ head
   button.exploreBtn(onclick="profile()") Profile
 .rightTab
   for x in feed
-    b=x.Name
-    b=x.User
+    .postDiv
+      .topPost
+        img#homePic(src=x.profilePic)
+        b=x.Date
+        b#homeUsername=x.User
+        b#homeName=x.Name
+      form(action="/findWorkout/", method="POST",class="form"+x.ID)
+        input(type="submit",class="invisible")
+        input(type="text",name="idImage", value=x.ID, class="invisible")
+        video(src=x.pic, id=x.ID, class="homeVideo",onclick="feedViewWorkout()")
 
 
