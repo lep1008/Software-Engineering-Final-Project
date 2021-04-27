@@ -261,8 +261,6 @@ router.post('/bio',function(req,res,next)
         if (err) throw err;
       });
     });
-
-
 res.redirect('/profile');
   });
 
