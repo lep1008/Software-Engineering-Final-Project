@@ -1,3 +1,4 @@
+//Changes exercise label
 function exerciseName()
 {
     var lift=document.querySelector('.exercise');
@@ -5,6 +6,7 @@ function exerciseName()
     label.innerHTML=lift.value;
 }
 
+//adds another exercise
 function addAnotherExercise()
 {
     var x=document.querySelector(".button");
@@ -13,7 +15,7 @@ function addAnotherExercise()
     form.submit();
 }
 
-
+//
 function change() 
 {
     id=event.target.id;

@@ -16,11 +16,13 @@ function index()
     location.href='/';
 }
 
+//Calls the explore get method
 function explore() {
   location.href='/explore';
 
 }
 
+//Calls the view profile get method
 function viewProfile() {
   location.href='/viewProfile';
 }
@@ -32,7 +34,7 @@ function logout() {
   form.submit();
 }
 
-
+//Calls the Add workout get method
 function workout() {
 
   location.href="/AddWorkout";
@@ -40,24 +42,25 @@ function workout() {
 
 }
 
+//Calls the home feed get method
 function home() {
   location.href="/home";
 }
 
-
+//Calls the profile get method
 function profile() {
   location.href="/profile";
 }
 
 
-
+//Calls the schedule get method
 function schedule() {
   location.href="/schedule";
 }
 
 
 
-
+//Calls the viewer schedule get method
 function viewerSchedule() {
   location.href="/viewerSchedule";
 }
@@ -84,15 +87,10 @@ function previewFile() {
 
 
 
-
+//views a user profile
   function viewUserProfile() {
-
     username=event.target.id;
-
-
     username='.'+username;
-
-
     var form = document.querySelector(username);
       form.submit();
   }

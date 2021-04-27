@@ -1,3 +1,4 @@
+//Edits user bio
 function editBio()
 {
     if(document.getElementById("bioButton").value=="Edit Bio")
@@ -14,14 +15,10 @@ function editBio()
         var x=document.getElementById("value");
         x.value=document.getElementById('bio').value;
         form.submit();
-   
-
-
-
     }
 }
 
-
+//displays a video
 function video()
 {
     var input=document.getElementById('idImage');
@@ -33,24 +30,19 @@ function video()
 }
 
 
-
+//deletes a workout
 function remove() 
 {
     id=event.target.id;
     id='.ID'+id
-    
-   var form= document.querySelector(id)
-
-
-
-
-form.submit();
+    var form= document.querySelector(id)
+    form.submit();
 
 }
 
 
 
-
+//displays add event menu
 function date() {
 
 
@@ -94,22 +86,16 @@ function date() {
     var input=document.getElementById('field')
 
     input.setAttribute('class','workoutEvent');
-
-
     var eventList=document.querySelectorAll('.Date'+date);
-
-
 if(eventList.length>0) {
     for(z=0;z<eventList.length;z++) {
         eventList[z].style.display="block";
 }
 }
-
-
 }
 
 
-
+//add button is clicked
 function add() {
     var x=document.getElementById('field');
 
@@ -123,31 +109,21 @@ function add() {
     blue.setAttribute('class','submitScheduleEvent');
 }
 
-
+//cancel button is clicked
 function cancel() {
-  
         var x=document.getElementsByName('selected');
         x[0].click();
-
- 
 }
 
 
 
 
 
-
+//provides ability to view workout from the home feed
 function feedViewWorkout() {
-
-
-
-
-
     id=event.target.id;
-
     id='.form'+id;
     var form=document.querySelector(id);
-
     form.submit();
 }
 

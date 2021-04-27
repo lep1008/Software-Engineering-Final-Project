@@ -4,32 +4,16 @@
   module.exports = router;
 
 
-
-  //Sets up database connection
+//Sets up database connection
   const mysql = require('mysql');
 
 
 
-//Global Variable Declaration 
-  var username=""; //holds value of username
-  var password=""; //holds value of password
-  var name=""; //holds value of full name
-  var following; //holds value of # of following
-  var followers; //holds value of # of followers
-  var posts; //holds value of # of posts
-  var bio; //holds value of bio
-  var pic='images/profilePic.jpg'; //holds value of profile image source
-  var blocker=true; //boolean to disable direct access to views
-  var workoutID;
-  var first=true;
-  
-  
 
 
-
-//////////////////////////////////////////////////////////////////////////////////
-////////////POST METHODS/////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////POST METHODS//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //Post Login Method
@@ -45,7 +29,6 @@
     var found=false; //initialize found variable to false
     username=req.body.user;//grabs username from login form
     password=req.body.pass//grabs password from login form
-    blocker=false;//user clicked on login blocker is no longer needed
     //Retrieves full name from database using the entered username and password
     con.getConnection(function(err)
     {
@@ -61,7 +44,7 @@
         else //user exists and the full name is retrieved using the default result variable
         {
           found=true;
-          name=JSON.stringify(result); //result variable must be converted into a string that can be used 
+          name=JSON.stringify(result); //result variable must be converted into a string that can be used
           name=name.substring(name.indexOf(":"));
           name=name.substring(name.indexOf("\"")+1,name.lastIndexOf("\""));
         }
@@ -74,7 +57,7 @@
         {
           found=false;
         }
-        else 
+        else
         {
           found=true;
           followers=JSON.stringify(result);
@@ -90,7 +73,7 @@
         {
           found=false;
         }
-        else 
+        else
         {
           found=true;
           following=JSON.stringify(result);
@@ -106,7 +89,7 @@
         {
           found=false;
         }
-        else 
+        else
         {
           found=true;
           posts=JSON.stringify(result);
@@ -122,7 +105,7 @@
         {
           found=false;
         }
-        else 
+        else
         {
           found=true;
           bio=JSON.stringify(result);
@@ -138,9 +121,9 @@
         {
           found=false;
         }
-        else 
+        else
         {
-          found=true;         
+          found=true;
           pic=JSON.stringify(result);
           pic=pic.substring(pic.indexOf(":"));
           pic=pic.substring(pic.indexOf("\"")+1,pic.lastIndexOf("\""));
@@ -148,7 +131,7 @@
           {
             pic='images/profilePic.jpg'
           }
-          
+
         }
       })
 
@@ -160,9 +143,9 @@
       {
         res.redirect('/profile'); //go to profile page
       }
-      else 
+      else
       {
-        
+
         res.redirect('/'); //user does not exist go back to login screen
       }
     }, 2000);
@@ -180,7 +163,6 @@
       password: "fitfriends488",
       database: "FitFriends"
     });
-    blocker=false; //signup button was clicked
     pic='images/profilePic.jpg'; //default profile image is provided
     username = req.body.user; //new user's username is stored
     password = req.body.pass; //new user's password is stored
@@ -193,7 +175,7 @@
     con.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "INSERT INTO User VALUES ('" + req.body.user + "','" + req.body.pass + "','" + req.body.name + "',0,0,0,null,null)"; //query to insert user  
+      var sql = "INSERT INTO User VALUES ('" + req.body.user + "','" + req.body.pass + "','" + req.body.name + "',0,0,0,null,null)"; //query to insert user
       con.query(sql, function (err, result)
       {
         if (err) throw err;
@@ -202,7 +184,7 @@
     res.redirect('/profile'); //go to profile page
   });
 
-  
+
 
 
 
@@ -215,7 +197,7 @@ filename: function (req, file, cb) {
 }
   });
 
-//Image is uploaded into filing system and the user's picture name is stored in the database 
+//Image is uploaded into filing system and the user's picture name is stored in the database
 router.post('/upload', upload.single('image'),(req, res) => {
   var con = mysql.createPool
   ({
@@ -235,17 +217,14 @@ router.post('/upload', upload.single('image'),(req, res) => {
       if (err) throw err;
     });
   });
-  blocker=false; 
   res.redirect('/profile'); //show profile page with updated picture
 });
-
-
 
 
 //User is logged out of system
 router.post('/logout',(req, res) => {
   //globals are reset to defaults
-   username=""; 
+   username="";
    password="";
    name="";
    following="";
@@ -255,12 +234,14 @@ router.post('/logout',(req, res) => {
    pic='images/profilePic.jpg';
    first=true;
    workoutID=null;
-
+   search="";
+   viewerProfile=null;
+   video=null;
 res.redirect('/'); //go to login screen
-
-
 });
 
+
+//Updates user's bio
 router.post('/bio',function(req,res,next)
   {
     var con = mysql.createPool
@@ -274,24 +255,16 @@ router.post('/bio',function(req,res,next)
     con.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "UPDATE USER SET Bio='"+bio+"' WHERE Username='"+username+"';"; 
+      var sql = "UPDATE USER SET Bio='"+bio+"' WHERE Username='"+username+"';";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
       });
     });
-    
-    
+
+
 res.redirect('/profile');
-
-
   });
-
-
-
-
-
-
 
 
 //Adds new workout info
@@ -304,9 +277,6 @@ res.redirect('/profile');
       password: "fitfriends488",
       database: "FitFriends"
     });
-
-
-
      workoutName=req.body.workoutName;
     var caption=req.body.workoutCaption;
     var date= new Date();
@@ -329,12 +299,12 @@ res.redirect('/profile');
       }
       var dateString=month+'/'+date.getDate()+'/'+date.getFullYear()+" "+hour+":"+minute+" AM";
     }
-    
+
      //Workout info
     noc.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"',null)"; //query to insert workout  
+      var sql = "INSERT INTO Workout VALUES ('" + dateString + "','" + username + "','" + caption +"','"+ workoutName+"',null)"; //query to insert workout
       noc.query(sql, function (err, result)
       {
         if (err) throw err;
@@ -349,33 +319,23 @@ res.redirect('/profile');
         if (err) throw err;
         if (result.length ===0)
         {
-          
+
         }
-        else 
+        else
         {
-          workoutID=JSON.stringify(result); //result variable must be converted into a string that can be used 
+          workoutID=JSON.stringify(result); //result variable must be converted into a string that can be used
           workoutID=workoutID.substring(workoutID.indexOf(":")+1);
           workoutID=workoutID.substring(0,workoutID.indexOf("}"));
-  
-        
         }
       })
     })
     }, 1000);
-
-
 setTimeout(() => {
   res.redirect('/AddExercise')
 }, 3000);
-
   });
 
-
-
-
-
-
-
+//Uploads exercise video and info
   router.post('/Exercise', upload.single('video'),(req, res) => {
     var con = mysql.createPool
     ({
@@ -388,7 +348,7 @@ setTimeout(() => {
     var name=req.body.exercise;
     var sets=req.body.sets;
     var reps=req.body.reps;
-    var weight=req.body.weight; 
+    var weight=req.body.weight;
     if(req.body.button=="new")
     {
       con.getConnection(function(err)
@@ -396,11 +356,11 @@ setTimeout(() => {
         if (err) throw err;
         if(first==true)
         {
-          var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";  
+          var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";
           first=false;
         }
         else {
-        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";  
+        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";
         }
         con.query(sql, function (err, result)
         {
@@ -412,17 +372,17 @@ setTimeout(() => {
   }, 2000);
     }
     else {
-  
+
     con.getConnection(function(err)
     {
       if (err) throw err;
       if(first==true)
       {
-        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";  
-        
+        var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"','yes*')";
+
       }
       else {
-      var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";  
+      var sql = "INSERT INTO UserExercises VALUES ('" + name + "','" + weight + "','" + sets +"','"+ reps+"','"+exerciseVideo+"','"+workoutID+"',null)";
       }
       con.query(sql, function (err, result)
       {
@@ -433,11 +393,98 @@ setTimeout(() => {
   first=true;
   res.redirect('/profile');
 }, 2000);
-
-
     }
   });
 
+  //stores the current workout
+  router.post('/findWorkout', (req, res) => {
+    workoutID=req.body.idImage;
+    res.redirect('/ViewWorkout');
+});
+
+    //changes the video to the selected workout
+    router.post('/changeVideo', (req, res) => {
+
+      video=req.body.wName;
+
+       res.redirect('/ViewWorkout');
+   });
+
+//deletes a user's workout and its associated exercises
+router.post('/deleteWorkout', (req, res) => {
+  var x=req.body.id;
+
+  var con = mysql.createPool
+    ({
+      host: "localhost",
+      user: "root",
+      password: "fitfriends488",
+      database: "FitFriends"
+    });
+
+ con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "delete FROM Workout Where ID ="+x;
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+     exampleExercises=result;
+
+   });
+   var sql = "delete FROM Userexercises Where WorkoutID ="+x;
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+     exampleExercises=result;
+   });
+   })
+   setTimeout(() => {
+    res.redirect('/profile');
+   }, 200);
+});
+
+//adds an event to a user's schedule
+router.post('/addToSchedule',function(req,res,next)
+{
+
+  var con = mysql.createPool
+  ({
+    host: "localhost",
+    user: "root",
+    password: "fitfriends488",
+    database: "FitFriends"
+  });
+  var event=req.body.event;
+  var date=req.body.InputDate;
+
+  con.getConnection(function(err)
+ {
+   if (err) throw err;
+   var sql = "INSERT INTO schedule VALUES ('" + username + "','" + event + "','" + date+ "')";
+   con.query(sql, function (err, result)
+   {
+     if (err) throw err;
+   });
+  });
+  setTimeout(() => {
+    res.redirect('/schedule');
+  }, 1000);
+});
+
+
+//refreshes the search
+router.post('/search', (req, res) => {
+  search=req.body.searchInput;
+  res.redirect('/explore');
+ });
+
+
+//stores the profile a user is viewing
+ router.post('/viewProfilePost', (req, res) => {
+  viewerProfile=req.body.field;
+  res.redirect('/viewProfile');
+ });
 
 
 
@@ -446,15 +493,10 @@ setTimeout(() => {
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////GET METHODS////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-////////////GET METHODS//////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-  
   //Gets Home Page
   router.get('/', function(req, res, next)
   {
@@ -462,16 +504,18 @@ setTimeout(() => {
   });
 
 //Gets Signup Page
-  router.get("/signup", (req, res) => 
+  router.get("/signup", (req, res) =>
   {
     res.render("signup");
   });
 
 
-  router.get("/home",(req,res) => {
-    
-    var feed;
 
+
+//Gets home feed
+  router.get("/home",(req,res) => {
+
+    var feed;
     var users;
     var pics;
 
@@ -486,41 +530,31 @@ setTimeout(() => {
     con.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "SELECT* from workout"; 
+      var sql = "SELECT* from workout";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
-       
+
         feed=result;
       });
 
-      var sql = "SELECT* from user"; 
+      var sql = "SELECT* from user";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
-       
+
         users=result;
       });
 
 
-      var sql = "SELECT* from userexercises where first='yes*'"; 
+      var sql = "SELECT* from userexercises where first='yes*'";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
         pics=result;
       });
-      
+
     });
-
-
-
-
-
-
-
-
-
-
       setTimeout(() => {
 
         for(i=0;i<feed.length;i++)
@@ -537,37 +571,14 @@ setTimeout(() => {
           feed[i].profilePic=profilePic;
 
         }
-
-
         feed.reverse();
-
-
-
           res.render("HOME",{feed:feed});
           }, 2000);
-
-
-
-
-
-
-
-
-
-
   });
-
- 
-
 
 
 //Gets Profile Page
-
-
-
-
-
-  router.get("/profile", (req, res) => 
+  router.get("/profile", (req, res) =>
   {
     var con = mysql.createPool
     ({
@@ -580,24 +591,19 @@ setTimeout(() => {
     var date;
     var wName;
     var image;
-    if(blocker==true) //we do not want people going directly to profile page without logging in or signing up
-    {
-      res.redirect('/'); //go to login screen
-    }
-    else {
       var workouts;
       var x=new Array(50);
       var z;
       con.getConnection(function(err)
       {
         if (err) throw err;
-        var sql = "SELECT* from Workout WHERE User='"+username+"'"; 
+        var sql = "SELECT* from Workout WHERE User='"+username+"'";
         con.query(sql, function (err, result)
         {
           if (err) throw err;
           workouts=result;
           posts=result.length;
-     
+
         });
       });
       var exercises;
@@ -605,16 +611,16 @@ setTimeout(() => {
         con.getConnection(function(err)
       {
         if (err) throw err;
-        var sql = "SELECT* from UserExercises Where First='yes*'"; 
+        var sql = "SELECT* from UserExercises Where First='yes*'";
         con.query(sql, function (err, result)
         {
           if (err) throw err;
           exercises=result;
         });
       });
-      }, 1000);    
-      setTimeout(() => {  
-       
+      }, 1000);
+      setTimeout(() => {
+
       for(i=0;i<workouts.length;i++)
       {
         date=workouts[i].Date;
@@ -636,27 +642,16 @@ setTimeout(() => {
          x = x.filter(el => {
           return el != null && el != '';
         });
-        x.reverse(); 
-      
+        x.reverse();
+
         res.render('profile', {user: username,name: name, pass: password,followers:followers,following:following,posts:posts,bio:bio,pic:pic,x:x}); //displays profile page with JSON variables
      }, 4000);
-    }
+    
   });
 
 
 
-  
-
-
-
-
-
-
-
-
-  
-//ADDS A  new exercise to the database
-  
+//Gets the add exercise page w/ exercieses to choose from
   router.get('/AddExercise', function(req, res, next)
 {
 
@@ -673,14 +668,14 @@ setTimeout(() => {
   con.getConnection(function(err)
   {
     if (err) throw err;
-    var sql = "SELECT Name FROM exercises"; 
+    var sql = "SELECT Name FROM exercises";
     con.query(sql, function (err, result)
     {
       if (err) throw err;
       exampleExercises=result;
-    
+
     for(i=0;i<exampleExercises.length;i++)
-    {    
+    {
     var helper;
     helper=JSON.stringify(exampleExercises[i]);
     helper=helper.substring(helper.indexOf(":"));
@@ -695,7 +690,7 @@ setTimeout(() => {
     {
 
       refresh=result;
-      
+
 
     });
 
@@ -707,27 +702,17 @@ setTimeout(() => {
   });
 
 
-    
-    
 
 
-//finds the selected workout
-
-  
-  router.post('/findWorkout', (req, res) => {
 
 
-      workoutID=req.body.idImage;
-
-      res.redirect('/ViewWorkout');
-  });
-
-
-  router.get("/ViewWorkout", (req, res) => 
+//Gets the view workout page (grabs workout data)
+  router.get("/ViewWorkout", (req, res) =>
   {
      var x;
      var w;
      var focus;
+     var userInfo;
      var con = mysql.createPool
       ({
         host: "localhost",
@@ -738,13 +723,22 @@ setTimeout(() => {
       con.getConnection(function(err)
       {
         if (err) throw err;
-        var sql = "SELECT* from Workout Where ID="+workoutID; 
+        var sql = "SELECT* from Workout Where ID="+workoutID;
         con.query(sql, function (err, result)
         {
           if (err) throw err;
           x=result[0];
         });
-        var sql = "SELECT* from Userexercises Where WorkoutID="+workoutID; 
+        setTimeout(() => {
+          var sql = "SELECT* from User Where Username='"+x.User+"'";
+          con.query(sql, function (err, result)
+          {
+            if (err) throw err;
+            userInfo=result;
+          }); 
+        }, 500);
+
+        var sql = "SELECT* from Userexercises Where WorkoutID="+workoutID;
         con.query(sql, function (err, result)
         {
           if (err) throw err;
@@ -763,82 +757,19 @@ setTimeout(() => {
         }
           w=result;
         });
-
-
-
-
       });
-
       setTimeout(() => {
-        res.render('ViewWorkout',{x:x,focus:focus,w:w})
+        res.render('ViewWorkout',{x:x,focus:focus,w:w,userInfo:userInfo[0]})
       }, 2000);
-
-
-
-
-
-
-
-
-    
   });
 
 
 
-  var video;
-    //changes the video to the selected workout
-  router.post('/changeVideo', (req, res) => {
-
-   video=req.body.wName;
-   
-    res.redirect('/ViewWorkout');
-});
-
-
-router.post('/deleteWorkout', (req, res) => {
-  var x=req.body.id;
-
-  var con = mysql.createPool
-    ({
-      host: "localhost",
-      user: "root",
-      password: "fitfriends488",
-      database: "FitFriends"
-    });
-
- con.getConnection(function(err)
- {
-   if (err) throw err;
-   var sql = "delete FROM Workout Where ID ="+x; 
-   con.query(sql, function (err, result)
-   {
-     if (err) throw err;
-     exampleExercises=result;
-   
-   });
-   var sql = "delete FROM Userexercises Where WorkoutID ="+x; 
-   con.query(sql, function (err, result)
-   {
-     if (err) throw err;
-     exampleExercises=result;
-   
-   });
-
-
- 
-   })
-
-   setTimeout(() => {
-    res.redirect('/profile');
-   }, 200);
- 
-
-});
 
 
 
-
-router.get("/schedule", (req, res) => 
+//Gets the user's schedule
+router.get("/schedule", (req, res) =>
 {
   var dates;
   var con = mysql.createPool
@@ -857,7 +788,7 @@ router.get("/schedule", (req, res) =>
    {
      if (err) throw err;
       dates=result;
-   
+
    });
 
   });
@@ -865,62 +796,11 @@ router.get("/schedule", (req, res) =>
 setTimeout(() => {
   res.render('Schedule',{dates,dates});
 }, 1000);
-
-
-
-
-  
 });
 
 
-router.post('/addToSchedule',function(req,res,next) 
-{
-
-  var con = mysql.createPool
-  ({
-    host: "localhost",
-    user: "root",
-    password: "fitfriends488",
-    database: "FitFriends"
-  });
-  var event=req.body.event;
-  var date=req.body.InputDate;
-
-  con.getConnection(function(err)
- {
-   if (err) throw err;
-   var sql = "INSERT INTO schedule VALUES ('" + username + "','" + event + "','" + date+ "')"; 
-   con.query(sql, function (err, result)
-   {
-     if (err) throw err;
-
-   
-   });
-
-  });
-
-  setTimeout(() => {
-    res.redirect('/schedule');
-  }, 1000);
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-router.get("/viewerSchedule", (req, res) => 
+//Gets the schedule of a user that the current user would like to view
+router.get("/viewerSchedule", (req, res) =>
 {
   var dates;
   var con = mysql.createPool
@@ -939,7 +819,7 @@ router.get("/viewerSchedule", (req, res) =>
    {
      if (err) throw err;
       dates=result;
-   
+
    });
 
   });
@@ -947,32 +827,13 @@ router.get("/viewerSchedule", (req, res) =>
 setTimeout(() => {
   res.render('viewSchedule',{dates,dates,user:viewerProfile});
 }, 1000);
-
-
-
-
-  
 });
 
-
-
-
-
-
-
-
-
-
-
-
-var search="";
-
-
-
+//Gets the explore page
 router.get('/explore', function(req, res, next)
 {
 
-  
+
 var userList;
 
 var empty;
@@ -986,7 +847,7 @@ var con = mysql.createPool
 
 con.getConnection(function(err)
 {
- 
+
  if (err) throw err;
  var sql = "select* from user where username Like '%"+search+"%'";
  con.query(sql, function (err, result)
@@ -1007,88 +868,17 @@ con.getConnection(function(err)
 });
 
 setTimeout(() => {
- 
-
-
-
   if(search=="" || search==undefined) {
-  
     res.render('Explore',{userList:empty,search:search});
-
   }
   else {
-  
     res.render('Explore',{userList:userList,search:search});
   }
-
-
 }, 1000);
-
-
-
-
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-router.post('/search', (req, res) => {
-
-
-
- search=req.body.searchInput;
-
-
- res.redirect('/explore');
-
-});
-
-
-
-
-
-
-var viewerProfile;
-
-
-router.post('/viewProfilePost', (req, res) => {
-
-  viewerProfile=req.body.field;
-  res.redirect('/viewProfile');
- 
- });
-
-
-
-router.get("/viewProfile", (req, res) => 
+//Gets the profile of a user that the current user would like to view
+router.get("/viewProfile", (req, res) =>
 {
   var viewerCredentials;
   var con = mysql.createPool
@@ -1108,26 +898,19 @@ router.get("/viewProfile", (req, res) =>
     var z;
     con.getConnection(function(err)
     {
-      var sql = "SELECT* from User WHERE Username='"+viewerProfile+"'"; 
+      var sql = "SELECT* from User WHERE Username='"+viewerProfile+"'";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
         viewerCredentials=result;
-      
-   
       });
-
-
-
-
       if (err) throw err;
-      var sql = "SELECT* from Workout WHERE User='"+viewerProfile+"'"; 
+      var sql = "SELECT* from Workout WHERE User='"+viewerProfile+"'";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
         workouts=result;
         posts=result.length;
-   
       });
     });
     var exercises;
@@ -1135,16 +918,16 @@ router.get("/viewProfile", (req, res) =>
       con.getConnection(function(err)
     {
       if (err) throw err;
-      var sql = "SELECT* from UserExercises Where First='yes*'"; 
+      var sql = "SELECT* from UserExercises Where First='yes*'";
       con.query(sql, function (err, result)
       {
         if (err) throw err;
         exercises=result;
       });
     });
-    }, 1000);    
-    setTimeout(() => {  
-     
+    }, 1000);
+    setTimeout(() => {
+
     for(i=0;i<workouts.length;i++)
     {
       date=workouts[i].Date;
@@ -1166,16 +949,24 @@ router.get("/viewProfile", (req, res) =>
        x = x.filter(el => {
         return el != null && el != '';
       });
-      x.reverse(); 
+      x.reverse();
       res.render('viewProfile', {viewerCredentials:viewerCredentials[0],x:x}); //displays profile page with JSON variables
    }, 4000);
-  
-
-
-
-
-
-
-
-
 });
+
+
+
+//Global Variable Declaration
+var username=""; //holds value of username
+var password=""; //holds value of password
+var name=""; //holds value of full name
+var following; //holds value of # of following
+var followers; //holds value of # of followers
+var posts; //holds value of # of posts
+var bio; //holds value of bio
+var pic='images/profilePic.jpg'; //holds value of profile image source
+var workoutID;
+var first=true;
+var search="";
+var viewerProfile;
+var video;
